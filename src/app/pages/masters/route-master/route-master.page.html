@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Route Master</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openAddRouteModal()">Add Route</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <!-- Search and Entries Controls -->
+    <ion-row class="table-controls">
+      <ion-col size="12" size-md="3" class="ion-text-center">
+        <ion-item>
+          <ion-select interface="popover" label="Show Entries" label-placement="floating" fill="outline" [(ngModel)]="entriesToShow" (ionChange)="onEntriesChange($event)">
+            <ion-select-option *ngFor="let option of [5, 10, 25, 50, 100]" [value]="option">
+              {{ option }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12" size-md="3" class="ion-text-center">
+        <ion-item>
+          <ion-input label="Search" label-placement="floating" fill="outline" [(ngModel)]="searchQuery"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <!-- Table Headers -->
+    <ion-row class="table-header">
+      <ion-col size="2" size-md="2">Name</ion-col>
+      <ion-col size="2" size-md="2">Status</ion-col>
+      <ion-col size="2" size-md="2">Vehicle Number</ion-col>
+      <ion-col size="2" size-md="2">Driver Name</ion-col>
+      <ion-col size="1" size-md="1">Distance (Km)</ion-col>
+      <ion-col size="1" size-md="1">Duration (Total Time)</ion-col>
+      <ion-col size="2" size-md="2">Action</ion-col>
+    </ion-row>
+
+    <!-- Table Rows -->
+    <ion-row *ngFor="let item of paginatedRoutes; let i = index" class="table-row">
+      <ion-col size="2" size-md="2">{{ item.name }}</ion-col>
+      <ion-col size="2" size-md="2">{{ item.status ? 'Active' : 'Inactive' }}</ion-col>
+      <ion-col size="2" size-md="2">{{ item.vehicleNumber }}</ion-col>
+      <ion-col size="2" size-md="2">{{ item.driverName }}</ion-col>
+      <ion-col size="1" size-md="1">{{ item.distance }}</ion-col>
+      <ion-col size="1" size-md="1">{{ item.duration }}</ion-col>
+      <ion-col size="2" size-md="2">
+        <ion-icon (click)="openEditModal(item)" name="create-sharp"></ion-icon>
+        <ion-icon (click)="deleteRoute(item)" name="trash-sharp"></ion-icon>
+      </ion-col>
+    </ion-row>
+
+    <!-- Pagination Controls -->
+    <ion-row class="pagination-controls">
+      <ion-col size="6" class="ion-text-start">
+        <ion-button (click)="previousPage()" [disabled]="currentPage === 1">Previous</ion-button>
+      </ion-col>
+      <ion-col size="6" class="ion-text-end">
+        <ion-button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</ion-button>
+      </ion-col>
+    </ion-row>
+
+    <!-- Entries Info -->
+    <ion-row>
+      <ion-col size="12" class="ion-text-center">
+        <p>
+          Showing {{ (currentPage - 1) * entriesToShow + 1 }} to {{ currentPage * entriesToShow > filteredRoutes.length ? filteredRoutes.length : currentPage * entriesToShow }} of {{ filteredRoutes.length }} entries
+        </p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

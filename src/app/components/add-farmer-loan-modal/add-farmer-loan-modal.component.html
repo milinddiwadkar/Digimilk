@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add Farmer Loan</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">Cancel</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="addLoanForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="floating">Farmer Name</ion-label>
+      <ion-input formControlName="farmerName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Loan A/C No.</ion-label>
+      <ion-input formControlName="loanAccountNo"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Loan Amount</ion-label>
+      <ion-input formControlName="loanAmount" type="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Interest Rate</ion-label>
+      <ion-input formControlName="interestRate" type="number" step="0.01"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">No of EMI</ion-label>
+      <ion-input formControlName="noOfEmi" type="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">EMI</ion-label>
+      <ion-input formControlName="emi" type="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Start Date</ion-label>
+      <ion-datetime formControlName="startDate" displayFormat="MMM DD, YYYY" pickerFormat="MMM DD, YYYY"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>End Date</ion-label>
+      <ion-datetime formControlName="endDate" displayFormat="MMM DD, YYYY" pickerFormat="MMM DD, YYYY"></ion-datetime>
+    </ion-item>
+    <ion-button expand="full" type="submit">Submit</ion-button>
+  </form>
+</ion-content>

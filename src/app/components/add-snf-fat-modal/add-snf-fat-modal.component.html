@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add SNF/FAT</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">Cancel</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="addSnfFatForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="floating">Milk Type</ion-label>
+      <ion-input formControlName="milkType"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Min SNF</ion-label>
+      <ion-input type="number" formControlName="minSnf"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Min FAT</ion-label>
+      <ion-input type="number" formControlName="minFat"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Max SNF</ion-label>
+      <ion-input type="number" formControlName="maxSnf"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Max FAT</ion-label>
+      <ion-input type="number" formControlName="maxFat"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" [disabled]="addSnfFatForm.invalid">Submit</ion-button>
+  </form>
+</ion-content>

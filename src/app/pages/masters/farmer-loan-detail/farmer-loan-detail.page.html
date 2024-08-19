@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Farmer Loan Details</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openAddFarmerLoanModal()">Add Loan</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <!-- Search and Entries Controls -->
+    <ion-row class="table-controls">
+      <ion-col size="12" size-md="3" class="ion-text-center">
+        <ion-item>
+          <ion-select interface="popover" label="Show Entries" label-placement="floating" fill="outline" [(ngModel)]="entriesToShow" (ionChange)="onEntriesChange()">
+            <ion-select-option *ngFor="let option of [5, 10, 25, 50, 100]" [value]="option">
+              {{ option }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12" size-md="3" class="ion-text-center">
+        <ion-item>
+          <ion-input label="Search" label-placement="floating" fill="outline" [(ngModel)]="searchQuery"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <!-- Table Headers -->
+    <ion-row class="table-header">
+      <ion-col size="2" size-md="2">Farmer Name</ion-col>
+      <ion-col size="2" size-md="2">Loan A/C No.</ion-col>
+      <ion-col size="2" size-md="2">Loan Amount</ion-col>
+      <ion-col size="1" size-md="1">Interest Rate</ion-col>
+      <ion-col size="1" size-md="1">No of EMI</ion-col>
+      <ion-col size="1" size-md="1">EMI</ion-col>
+      <ion-col size="1" size-md="1">Start Date</ion-col>
+      <ion-col size="1" size-md="1">End Date</ion-col>
+      <ion-col size="1" size-md="1">Action</ion-col>
+    </ion-row>
+
+    <!-- Table Rows -->
+    <ion-row *ngFor="let item of paginatedLoans; let i = index" class="table-row">
+      <ion-col size="2" size-md="2">{{ item.farmerName }}</ion-col>
+      <ion-col size="2" size-md="2">{{ item.loanAccountNo }}</ion-col>
+      <ion-col size="2" size-md="2">{{ item.loanAmount | currency: 'INR' }}</ion-col>
+      <ion-col size="1" size-md="1">{{ item.interestRate }}%</ion-col>
+      <ion-col size="1" size-md="1">{{ item.noOfEmi }}</ion-col>
+      <ion-col size="1" size-md="1">{{ item.emi | currency: 'INR' }}</ion-col>
+      <ion-col size="1" size-md="1">{{ item.startDate | date: 'shortDate' }}</ion-col>
+      <ion-col size="1" size-md="1">{{ item.endDate | date: 'shortDate' }}</ion-col>
+      <ion-col size="1" size-md="1">
+        <ion-icon (click)="openEditModal(item)" name="create-sharp"></ion-icon>
+        <ion-icon (click)="deleteLoan(item)" name="trash-sharp"></ion-icon>
+      </ion-col>
+    </ion-row>
+
+    <!-- Pagination Controls -->
+    <ion-row class="pagination-controls">
+      <ion-col size="6" class="ion-text-start">
+        <ion-button (click)="previousPage()" [disabled]="currentPage === 1">Previous</ion-button>
+      </ion-col>
+      <ion-col size="6" class="ion-text-end">
+        <ion-button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</ion-button>
+      </ion-col>
+    </ion-row>
+
+    <!-- Entries Info -->
+    <ion-row>
+      <ion-col size="12" class="ion-text-center">
+        <p>
+          Showing {{ (currentPage - 1) * entriesToShow + 1 }} to {{ currentPage * entriesToShow > filteredLoans.length ? filteredLoans.length : currentPage * entriesToShow }} of {{ filteredLoans.length }} entries
+        </p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

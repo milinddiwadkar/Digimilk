@@ -1,0 +1,44 @@
+<!-- add-farmer-rd-detail-modal.component.html -->
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add Farmer RD Detail</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">Cancel</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="addFarmerRdDetailForm" (ngSubmit)="save()">
+    <ion-item>
+      <ion-label position="floating">Farmer Name</ion-label>
+      <ion-input formControlName="farmerName"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Tenure Amount</ion-label>
+      <ion-input formControlName="tenureAmount" type="number"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">No of Months</ion-label>
+      <ion-input formControlName="noOfMonths" type="number"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Start Date</ion-label>
+      <ion-datetime formControlName="startDate" displayFormat="MMM DD, YYYY"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Maturity Amount</ion-label>
+      <ion-input formControlName="maturityAmount" type="number"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="floating">Interest Rate (%)</ion-label>
+      <ion-input formControlName="interestRate" type="number" step="0.01"></ion-input>
+    </ion-item>
+
+    <ion-button expand="full" type="submit" [disabled]="!addFarmerRdDetailForm.valid">Save</ion-button>
+  </form>
+</ion-content>

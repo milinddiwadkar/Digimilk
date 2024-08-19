@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ milkCollection ? 'Edit Milk Collection' : 'Add Milk Collection' }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancel()">Cancel</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="form" (ngSubmit)="submitForm()">
+    <ion-item>
+      <ion-label position="floating">Farmer Name</ion-label>
+      <ion-input formControlName="farmerName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Milk Type</ion-label>
+      <ion-input formControlName="milkType"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Milk Category</ion-label>
+      <ion-input formControlName="milkCategory"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Shift</ion-label>
+      <ion-input formControlName="shift"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">FAT</ion-label>
+      <ion-input formControlName="fat" type="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">SNF</ion-label>
+      <ion-input formControlName="snf" type="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Rate Per Litre</ion-label>
+      <ion-input formControlName="ratePerLitre" type="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Total Milk</ion-label>
+      <ion-input formControlName="totalMilk" type="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Total Amount</ion-label>
+      <ion-input formControlName="totalAmount" type="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Can ID</ion-label>
+      <ion-input formControlName="canId"></ion-input>
+    </ion-item>
+    <ion-footer>
+      <ion-toolbar>
+        <ion-buttons slot="end">
+          <ion-button type="submit" [disabled]="form.invalid">{{ milkCollection ? 'Update' : 'Submit' }}</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-footer>
+  </form>
+</ion-content>

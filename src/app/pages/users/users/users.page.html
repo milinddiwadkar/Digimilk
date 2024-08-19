@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar><ion-buttons slot="start">
+    <ion-back-button defaultHref="/"></ion-back-button>
+  </ion-buttons>
+  <ion-title class= "ion-text-center">Users</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/users/add-users' ]">Add User</ion-button>
+      <ion-button (click)="importFromExcel()">Import Excel</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label>Filter by Role</ion-label>
+    <ion-select [(ngModel)]="selectedRole" (ionChange)="filterByRole()">
+      <ion-select-option *ngFor="let role of roles" [value]="role">{{ role }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col><strong>User Name</strong></ion-col>
+      <ion-col><strong>Email ID</strong></ion-col>
+      <ion-col><strong>Mobile</strong></ion-col>
+      <ion-col><strong>Role</strong></ion-col>
+      <ion-col><strong>Status</strong></ion-col>
+      <ion-col><strong>Created Time/Date</strong></ion-col>
+      <ion-col><strong>Action</strong></ion-col>
+    </ion-row>
+
+    <ion-row *ngFor="let user of filteredUsers">
+      <ion-col>{{ user.userName }}</ion-col>
+      <ion-col>{{ user.emailId }}</ion-col>
+      <ion-col>{{ user.mobile }}</ion-col>
+      <ion-col>{{ user.role }}</ion-col>
+      <ion-col>{{ user.status ? 'Active' : 'Deactive' }}</ion-col>
+      <ion-col>{{ user.createdAt | date: 'short' }}</ion-col>
+      <ion-col>
+        <ion-select interface="popover">
+          <ion-select-option (click)="editUser(user)">Edit User</ion-select-option>
+          <ion-select-option (click)="deleteUser(user)">Delete</ion-select-option>
+          <ion-select-option (click)="changePassword(user)">Change Password</ion-select-option>
+          <ion-select-option (click)="updateUserDetails(user)">Update User Details</ion-select-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

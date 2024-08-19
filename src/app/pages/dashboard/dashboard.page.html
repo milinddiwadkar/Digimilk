@@ -1,0 +1,116 @@
+
+<!-- header -->
+<ion-header>
+  <ion-toolbar>
+    <!-- <ion-buttons slot="start" >
+      <ion-button (click)="toggleMenu()">
+        <ion-icon slot="icon-only" name="menu-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons> -->
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    
+    <!-- <ion-buttons slot="start">
+    <ion-button><a href="login">Login</a></ion-button>
+    </ion-buttons> -->
+
+    
+    <div class="digi-logo-container">
+      <img src="assets/digimilk-logo/digimilk-logo.png" alt="Digi Logo" class="digi-logo">
+    </div>
+    
+    <ion-title>
+      <div style="text-align: end; padding: 10px 0;">
+        <h2>John Doe</h2>
+        <p>Your Dashboard</p>
+      </div>
+    </ion-title>
+    <ion-buttons slot="end" >
+      <ion-button>
+        <img src="assets/icon/personLogo.svg" alt="Logo" class="logo">
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<!-- main menu -->
+<ion-content>
+  <div class="background-image-container">
+  <!-- First section dashboard -->
+  <div class="flex-container container-fluid">
+      <div class="flex-grid">
+        <div class="flex-item">
+          <a href="/item1">
+            <div class="item-content">
+              <img src="\assets\first-section\person.svg" alt="">
+              <h1>Farmer</h1>
+              <p>132</p>
+            </div>
+          </a>
+        </div>
+        <div class="flex-item">
+          <a href="/item2">
+            <div class="item-content">
+              <img src="\assets\first-section\rupee.svg" alt="">
+              <h1>Farmer Milk</h1>
+              <p>563 Litre</p>
+              <p>&#8377; 130000 Price</p>
+            </div>
+          </a>
+        </div>
+        <div class="flex-item">
+          <a href="/item3">
+            <div class="item-content">
+              <img src="\assets\first-section\group.svg" alt="">
+              <h1>Society</h1>
+              <p>329</p>
+            </div>
+          </a>
+        </div>
+        <div class="flex-item">
+          <a href="/item4">
+            <div class="item-content">
+              <img src="\assets\first-section\rupee.svg" alt="">
+              <h1>Society Milk</h1>
+              <p>0 Litre</p>
+              <p>&#8377; 0 Price</p>
+            </div>
+          </a>
+        </div>
+        <div class="flex-item">
+          <a href="/item6">
+            <div class="item-content">
+              <img src="\assets\first-section\tank.svg" alt="">
+              <h1>Avg Farmer</h1>
+              <p>SNF = </p>
+              <p>FAT = </p>
+            </div>
+          </a>
+        </div>
+        <div class="flex-item">
+          <a href="/item5">
+            <div class="item-content">
+              <img src="\assets\first-section\tank.svg" alt="">
+              <h1>Avg Society</h1>
+              <p>SNF = </p> 
+              <p>FAT = </p>
+            </div>
+          </a>
+        </div>
+    
+      </div>
+      
+      <!-- Second section dashboard -->
+      <div class="second-section">
+        <ul class="second-list">
+          <li class="second-item"><a href="/add-milk-collection"><img src="assets/dashboard/milk-img.svg" alt="Milk Image" class="list-image"/><span>Add Milk Collection</span> </a></li>
+        <li class="second-item"><a href="/request-order"><img src="assets/dashboard/truck-img.svg" alt="Truck Image" class="list-image"/><span>Request Order</span></a></li>
+        <li class="second-item"><a href="/collection-data"><img src="assets/dashboard/data-img.svg" alt="Data Image" class="list-image"/><span>Collection Data</span></a></li>
+        <li class="second-item"><a href="/payment-data"><img src="assets/dashboard/money-img.svg" alt="Money Image" class="list-image"/><span>Payment Data</span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+</ion-content>

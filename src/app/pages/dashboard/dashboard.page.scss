@@ -1,0 +1,370 @@
+// header css
+ion-header ion-toolbar {
+  background-color: white;
+  color: black;
+  display: flex;
+  align-items: center; /* Center content vertically */
+  justify-content: space-between; /* Space between menu button and header content */
+  // padding: ; /* Add padding to the sides */
+  position: relative; /* For positioning the logo */
+}
+.digi-logo-container {
+  position: absolute;
+  left: 50%;
+  bottom: 0px;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // padding: 10px;
+}
+
+.digi-logo-container img.digi-logo {
+  width: 100px; /* Adjust size as needed */
+  height: auto;
+}
+
+ion-button img.logo {
+  width: 50px;
+  /* Adjust the size as needed */
+  height: auto;
+  display: block;
+}
+
+ion-title h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+ion-title p {
+  margin: 5px 0;
+  font-size: 10px;
+  color: #666;
+}
+@media (max-width: 600px) {
+  ion-title h2, ion-title p {
+    display: none;
+  }
+  .digi-logo-container{
+    bottom: 5px;
+  }
+.digi-logo-container img.digi-logo {
+  width: 70px; /* Adjust size as needed */
+  height: auto;
+}
+
+}
+
+// #main-content {
+//   --background: white;
+//   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+//   /* Add box shadow */
+//   height: 100vh;
+//   display: grid;
+//   grid-template-rows: auto 1fr auto; /* Header, content, and footer layout */
+
+// }
+
+// #main-content ion-list {
+//   display: grid;
+//   grid-template-rows: repeat(auto-fill, minmax(40px, 1fr));
+//   gap: 5px; /* Space between items */
+//   padding: 5px 5px;
+//   // --background: #115ca1;
+//   // width: 100%;
+//   height: 100%; /* Full height of the menu */
+//   overflow-y: auto;/* Enable vertical scrolling */
+//   // align-content: start;
+//   // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Add box shadow */
+// }
+
+// #main-content ion-item {
+//   display: flex;
+//   // grid-template-columns: auto 1fr 0fr; /* Icon, label, and icon layout */
+//     align-content: center;
+//   border-radius: 25px;
+//   --background: #115ca1;
+//   --inner-padding-end: 0; /* Remove default end padding */
+//   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Add box shadow */
+
+// }
+
+// #main-content ion-icon {
+//   font-size: 24px; /* Adjust size of icons */
+//   color: white;/* Adjust color if needed */
+// }
+
+// #main-content ion-icon:first-child {
+//   font-size: 24px; /* Adjust size of icons */
+//   color: black; /* Adjust color if needed */
+//   background-color: white;
+//   padding: 4px;
+//   border-radius: 50%;
+//   align-content: center;
+// }
+
+// #main-content ion-label {
+//   color: white;
+//   // margin: 0 8px;  /* Space between icon and label */
+// }
+
+// .menu-item ion-icon:last-child {
+//   display: flex;
+//   justify-self: end;
+//   font-size: 24px;  /* Adjust size of icons */
+//   color: white; /* Adjust color if needed */
+// }
+
+// // dropdown list css
+// #main-content ion-item-divider {
+// border-radius: 25px;
+//   --background: #115ca1;
+//   --color: white;
+//   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+// }
+
+
+// #main-content ion-item-group {
+//   background: #115ca1;
+//   --background: #115ca1; /* Consistent background with other items */
+//   --color: white; /* Consistent text color */
+// }
+
+// #main-content ion-item-group ion-item {
+//   border-radius: 25px;
+//   --background: #115ca1;
+//   --color: white;
+//   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+// }
+
+
+// main body css
+ion-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  --background:#eff0ec; /* Replace with your desired background color */
+}
+
+
+/* Background image container */
+.background-image-container {
+  width: 100%;
+  height: 100vh;
+  background: url('https://th.bing.com/th/id/OIP.zuJQMtzHnbRS7TekbE0YBAAAAA?rs=1&pid=ImgDetMain') no-repeat center center/cover;
+}
+
+// first section
+/* Flex container */
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
+// /* Flex grid for first section */
+// .flex-grid {
+//   display: flex;
+//   flex-wrap: wrap;
+//   justify-content: center;
+//   align-items: center;
+//   width: 100%;
+//   height: 100%;
+// }
+
+// /* Flex items */
+// .flex-item {
+//   flex: 1 1 calc(33.33% - 20px); /* 3 columns */
+//   margin: 10px;
+//   background: rgba(255, 255, 255, 0.8);
+//   padding: 20px;
+//   text-align: center;
+//   border-radius: 8px;
+//   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+// }
+
+// .flex-item a {
+//   text-decoration: none;
+//   color: inherit;
+// }
+
+
+.flex-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 10px;
+}
+
+.flex-item {
+  flex: 1 1 calc(24.33% - 20px); /* Adjust width as needed */
+  box-sizing: border-box;
+  text-align: center;
+  border: 1px solid #b0b0b0;
+  padding: 10px;
+  background-color: #e5f5ff;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  box-shadow: 0 8px 8px  rgba(0,0,0,0.6);
+}
+
+.flex-item a{
+  text-decoration: none;
+}
+.item-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  height: 100%;
+}
+
+h1 {
+  margin: 0;
+  font-size: 24px;
+  color: black;
+  
+}
+
+p {
+  margin: 5px 0 10px;
+  font-size: 18px;
+  color: black;
+  
+}
+
+.item-content img {
+  align-self: flex-end; /* Align the icon at the end */
+  margin-top: 10px;
+  width: 40px;
+  height: auto;
+  font-size: 24px; /* Adjust size as needed */
+}
+/* Second section */
+.second-section {
+  width: 100%;
+  // padding: 20px;
+  // margin-top: 20px;
+}
+
+/* Second list */
+.second-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Second items */
+.second-item {
+  flex: 1 1 calc(50% - 20px); /* 2 columns */
+  margin: 10px;
+  background: #286caa;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.6);
+  padding: 10px;
+  text-align: center;
+}
+
+.second-item a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.second-item a span{
+  display: block;
+
+}
+.list-image {
+  align-items: center;
+  width: 150px;
+  height: 85px;
+  margin-bottom: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .flex-grid{
+    gap: 20px;
+  }
+  .flex-item {
+    flex: 1 1 calc(50% - 20px); /* 1 column */
+  }
+
+  .second-item {
+    flex: 1 1 calc(50% - 20px); /* 1 column */
+  }
+}
+
+@media (min-width: 769px) and (max-width: 991px) {
+  .flex-item {
+    flex: 1 1 calc(24.33% - 20px); /* 2 columns */
+  }
+  
+  .second-list{
+    margin: 10px 20px;
+  }
+
+  .second-item {
+    flex: 1 1 calc(50% - 20px); /* 2 columns */
+  }
+}
+
+@media  (min-width: 992px) and (max-width: 1024px) {
+  .flex-container{
+    width: 73vw;
+    margin: auto;
+  }
+  .flex-item {
+    flex: 1 1 calc(24.33% - 20px); /* 3 columns */
+  }
+  
+  .second-list{
+    margin: 20px 70px;
+  }
+  .second-item {
+    margin: 10px;
+    flex: 1 1 calc(50% - 20px); /* 4 columns if desired */
+  }
+  
+}
+
+@media (min-width: 1025px) {
+  .flex-container{
+    width: 73vw;
+    margin: auto;
+    // align-items: center;
+  }
+  .flex-grid{
+    gap: 20px;
+  }
+  .flex-item {
+    margin-top: 20px;
+    flex: 1 1 calc(24.33% - 20px); /* 3 columns */
+  }
+
+  .second-list{
+    margin: 50px 50px;
+  }
+  .second-item {
+    flex: 1 1 calc(50% - 20px); /* 4 columns if desired */
+  }
+}
+
+
+

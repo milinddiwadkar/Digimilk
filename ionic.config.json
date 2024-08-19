@@ -1,0 +1,7 @@
+{
+  "name": "digimilk",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

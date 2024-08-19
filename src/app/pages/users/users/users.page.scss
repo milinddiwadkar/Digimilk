@@ -1,0 +1,19 @@
+ion-header {
+    ion-toolbar {
+      justify-content: space-between;
+    }
+  }
+  
+  ion-grid {
+    ion-row {
+      ion-col {
+        text-align: center;
+        padding: 10px;
+      }
+  
+      &:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+    }
+  }
+  

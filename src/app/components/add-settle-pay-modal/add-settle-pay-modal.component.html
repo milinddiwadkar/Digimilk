@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add Settlement</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">Cancel</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="addSettlePayForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="floating">Society</ion-label>
+      <ion-select formControlName="society">
+        <ion-select-option value="Society A">Society A</ion-select-option>
+        <ion-select-option value="Society B">Society B</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Farmer</ion-label>
+      <ion-select formControlName="farmer">
+        <ion-select-option value="farmer A">Farmer A</ion-select-option>
+        <ion-select-option value="farmer B">Farmer B</ion-select-option>
+      </ion-select>    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Settlement Amount</ion-label>
+      <ion-input formControlName="settlementAmount" type="number" min="0"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Settlement Date</ion-label>
+      <ion-datetime formControlName="settlementDate"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Adjust</ion-label>
+      <ion-input formControlName="adjust"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Description</ion-label>
+      <ion-input formControlName="description"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Head</ion-label>
+      <ion-input formControlName="head"></ion-input>
+    </ion-item>
+
+    <ion-button expand="full" type="submit" [disabled]="!addSettlePayForm.valid">Submit</ion-button>
+  </form>
+</ion-content>

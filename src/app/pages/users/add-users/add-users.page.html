@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title class= "ion-text-center">Add User</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="floating">User Name</ion-label>
+      <ion-input formControlName="userName" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Email ID</ion-label>
+      <ion-input formControlName="emailId" type="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">User ID</ion-label>
+      <ion-input formControlName="userId" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Mobile</ion-label>
+      <ion-input formControlName="mobile" type="tel"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input formControlName="password" type="password"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Role</ion-label>
+      <ion-select formControlName="role">
+        <ion-select-option *ngFor="let role of roles" [value]="role">{{ role }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Status</ion-label>
+      <ion-toggle formControlName="status"></ion-toggle>
+    </ion-item>
+
+    <div class="button-group">
+      <ion-button type="submit" expand="full" color="primary">Submit</ion-button>
+      <ion-button expand="full" color="medium" (click)="onCancel()">Cancel</ion-button>
+    </div>
+  </form>
+</ion-content>

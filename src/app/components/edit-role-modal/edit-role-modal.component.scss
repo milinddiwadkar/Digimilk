@@ -1,0 +1,84 @@
+/* General styles for the modal */
+ion-card {
+    margin: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Header and Title styles */
+  ion-card-header {
+    background-color: #f4f5f8;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  ion-card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+  }
+  .subpages-list {
+    padding-left: 20px; /* Indent subpages */
+    border-left: 2px solid #ccc; /* Visual separation */
+    margin-left: 20px;
+    margin-top: -10px; /* Adjust positioning to close gap */
+  }
+  
+  ion-item {
+    padding: 5px;
+    --inner-padding-end: 0; /* Remove right padding to align checkbox */
+  }
+  
+  ion-item ion-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 5px 0;
+    font-size: 14px; /* Slightly smaller font for subpages */
+  }
+
+  ion-item ion-select{
+    width: 100%;
+    margin: 5px 0;
+
+  }
+  
+  .subpages-list ion-item {
+    --background: #f8f8f8; /* Subtle background for subpages */
+  }
+  
+  ion-card-content {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Space between buttons */
+    padding: 16px;
+  }
+  
+  .button-group ion-button {
+    flex: 1; /* Allow buttons to take up equal space */
+  }
+  
+  @media (max-width: 768px) {
+    .subpages-list {
+      padding-left: 10px; /* Adjust padding on smaller screens */
+      border-left-width: 1px;
+    }
+  
+    ion-item ion-label {
+      font-size: 12px; /* Adjust font size for smaller screens */
+    }
+
+    .button-group {
+        flex-direction: column; /* Stack buttons vertically on smaller screens */
+      }
+    
+      .button-group ion-button {
+        width: 100%; /* Full width for buttons on smaller screens */
+      }
+  }
+  

@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add Rate</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancel()">Cancel</ion-button>
+      <ion-button (click)="submit()">Submit</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="rateForm">
+    <ion-item>
+      <ion-label position="floating">Milk Type</ion-label>
+      <ion-input formControlName="milkType"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">SNF</ion-label>
+      <ion-input type="number" formControlName="snf"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">FAT</ion-label>
+      <ion-input type="number" formControlName="fat"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Rate per Litre</ion-label>
+      <ion-input type="number" formControlName="ratePerLitre"></ion-input>
+    </ion-item>
+  </form>
+</ion-content>

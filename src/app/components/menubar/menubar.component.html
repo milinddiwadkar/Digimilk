@@ -1,0 +1,230 @@
+
+<ion-app>
+  <ion-split-pane contentId="main-content">
+    <!-- Side Menu -->
+    <ion-menu  *ngIf="showMenuBar" side="start" menuId="main-menu" contentId="main-content">
+      <ion-header>
+        <ion-toolbar>
+          <ion-title style="padding: 23px 15px; color: black;">Menu</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="closeMenu()">
+              <ion-icon class="menu-cross" name="close"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content>
+        <ion-list>
+          <ion-item [routerLink]="['/dashboard' ]" (click)="closeMenu()" class="active">
+            <ion-icon slot="start" name="home"></ion-icon>
+            <ion-label>Dashboard</ion-label>
+          </ion-item>
+          <ion-item [routerLink]="['/roles-permissions' ]" (click)="closeMenu()">
+            <ion-icon slot="start" name="apps"></ion-icon>
+            <ion-label>Roles & Permissions</ion-label>
+          </ion-item>
+
+          <!-- users dropdown -->
+          <ion-item-divider (click)="toggleDropdown('users')" class="item-divider">
+            <ion-icon slot="start" name="pie-chart"></ion-icon>
+            <ion-label>Users</ion-label>
+            <ion-icon slot="end" [name]="dropdowns['users'] ? 'chevron-down-outline' : 'chevron-forward-outline'"></ion-icon>
+          </ion-item-divider>
+          <ion-item-group *ngIf="dropdowns['users']">
+            <ion-item [routerLink]="['/users/add-users']"  (click)="closeMenu()">
+              <ion-icon slot="start" name="arrow-forward-sharp"></ion-icon>
+              <ion-label>Add Users</ion-label>
+            </ion-item>
+            <ion-item [routerLink]="['/users/users' ]" (click)="closeMenu()">
+              <ion-icon slot="start" name="arrow-forward-sharp"></ion-icon>
+              <ion-label>Users</ion-label>
+            </ion-item>
+          </ion-item-group>
+          
+          <!-- Masters Dropdown -->
+          <ion-item-divider (click)="toggleDropdown('masters')" class="item-divider">
+            <ion-icon slot="start" name="list"></ion-icon>
+            <ion-label>Masters</ion-label>
+            <ion-icon slot="end" [name]="dropdowns['masters'] ? 'chevron-down-outline' : 'chevron-forward-outline'"></ion-icon>
+          </ion-item-divider>
+          <ion-item-group *ngIf="dropdowns['masters']">
+            <ion-item [routerLink]="['/masters/milk-type']"  (click)="closeMenu()">
+              <ion-icon slot="start" name="arrow-forward-sharp"></ion-icon>
+              <ion-label>Milk Type</ion-label>
+            </ion-item>
+            <ion-item [routerLink]="['/masters/pro-type' ]" (click)="closeMenu()">
+              <ion-icon slot="start" name="arrow-forward-sharp"></ion-icon>
+              <ion-label>Product Type</ion-label>
+            </ion-item>
+            <ion-item [routerLink]="['/masters/product']"  (click)="closeMenu()">
+              <ion-icon slot="start" name="arrow-forward-sharp"></ion-icon>
+              <ion-label>Product</ion-label>
+            </ion-item>
+            <ion-item [routerLink]="['/masters/shift']"  (click)="closeMenu()">
+              <ion-icon slot="start" name="arrow-forward-sharp"></ion-icon>
+              <ion-label>Shift</ion-label>
+            </ion-item>
+            <ion-item [routerLink]="['/masters/rate-chart' ]" (click)="closeMenu()">
+              <ion-icon slot="start" name="arrow-forward-sharp"></ion-icon>
+              <ion-label>Rate-Chart</ion-label>
+            </ion-item>
+            <ion-item [routerLink]="['/masters/farmer-loan-detail' ]" (click)="closeMenu()">
+              <ion-icon slot="start" name="arrow-forward-sharp"></ion-icon>
+              <ion-label>Farmer Loan Details</ion-label>
+            </ion-item>
+            <ion-item [routerLink]="['/masters/farmer-rd-details' ]" (click)="closeMenu()">
+              <ion-icon slot="start" name="arrow-forward-sharp"></ion-icon>
+              <ion-label>Farmer RD Details</ion-label>
+            </ion-item>
+            <ion-item [routerLink]="['/masters/route-master' ]" (click)="closeMenu()">
+              <ion-icon slot="start" name="arrow-forward-sharp"></ion-icon>
+              <ion-label>Router Master</ion-label>
+            </ion-item>
+            <ion-item [routerLink]="['/masters/set-min-snf-fat']"  (click)="closeMenu()">
+              <ion-icon slot="start" name="arrow-forward-sharp"></ion-icon>
+              <ion-label>Set Min SNF FAT</ion-label>
+            </ion-item>
+            <ion-item [routerLink]="['/masters/settle-pay']"  (click)="closeMenu()">
+              <ion-icon slot="start" name="arrow-forward-sharp"></ion-icon>
+              <ion-label>Settle Payments</ion-label>
+            </ion-item>
+            <ion-item [routerLink]="['/masters/manage-week' ]" (click)="closeMenu()">
+              <ion-icon slot="start" name="arrow-forward-sharp"></ion-icon>
+              <ion-label>Manage Week</ion-label>
+            </ion-item>
+          </ion-item-group>
+      
+          <ion-item [routerLink]="['/milk-collection']"  (click)="closeMenu()">
+            <ion-icon slot="start" name="briefcase"></ion-icon>
+            <ion-label>Milk Collection</ion-label>
+          </ion-item>
+          <ion-item [routerLink]="['/queries' ]" (click)="closeMenu()">
+            <ion-icon slot="start" name="chatbubbles"></ion-icon>
+            <ion-label>Queries</ion-label>
+          </ion-item>
+          <ion-item [routerLink]="['/society-milk-collection' ]" (click)="closeMenu()">
+            <ion-icon slot="start" name="briefcase"></ion-icon>
+            <ion-label>Society Milk Collection</ion-label>
+          </ion-item>
+          
+          <!-- Farmer Demand Dropdown -->
+          <ion-item-divider (click)="toggleDropdown('farmerDemand')" class="item-divider">
+            <ion-icon slot="start" name="list"></ion-icon>
+            <ion-label>Farmer Demand</ion-label>
+            <ion-icon slot="end" [name]="dropdowns['farmerDemand'] ? 'chevron-down-outline' : 'chevron-forward-outline'"></ion-icon>
+          </ion-item-divider>
+          <ion-item-group *ngIf="dropdowns['farmerDemand']">
+            <ion-item [routerLink]="['/farmer-demand/pro-demand']"  (click)="closeMenu()">
+              <ion-icon slot="start" name="arrow-forward-sharp"></ion-icon>
+              <ion-label>Product Demand</ion-label>
+            </ion-item>
+            <ion-item [routerLink]="['/farmer-demand/dr-demand' ]" (click)="closeMenu()">
+              <ion-icon slot="start" name="arrow-forward-sharp"></ion-icon>
+              <ion-label>Doctors Demand</ion-label>
+            </ion-item>
+          </ion-item-group>
+      
+          <ion-item [routerLink]="['/payments' ]" (click)="closeMenu()">
+            <ion-icon slot="start" name="wallet"></ion-icon>
+            <ion-label>Payments</ion-label>
+          </ion-item>
+          <ion-item [routerLink]="['/products' ]" (click)="closeMenu()">
+            <ion-icon slot="start" name="bag-handle"></ion-icon>
+            <ion-label>Product</ion-label>
+          </ion-item>
+          <ion-item [routerLink]="['/society-sales']"  (click)="closeMenu()">
+            <ion-icon slot="start" name="ribbon"></ion-icon>
+            <ion-label>Society Sales</ion-label>
+          </ion-item>
+          
+          <!-- Reports Dropdown -->
+          <ion-item-divider (click)="toggleDropdown('reports')" class="item-divider">
+            <ion-icon slot="start" name="download"></ion-icon>
+            <ion-label>Reports</ion-label>
+            <ion-icon slot="end" [name]="dropdowns['reports'] ? 'chevron-down-outline' : 'chevron-forward-outline'"></ion-icon>
+          </ion-item-divider>
+          <ion-item-group *ngIf="dropdowns['reports']">
+            <ion-item [routerLink]="['/reports/union']"  (click)="closeMenu()">
+              <ion-icon slot="start" name="arrow-forward-sharp"></ion-icon>
+              <ion-label>Union</ion-label>
+            </ion-item>
+            <ion-item [routerLink]="['/reports/supervisor-master']"  (click)="closeMenu()">
+              <ion-icon slot="start" name="arrow-forward-sharp"></ion-icon>
+              <ion-label>Supervisor Master</ion-label>
+            </ion-item>
+            <ion-item [routerLink]="['/reports/society-samiti']"  (click)="closeMenu()">
+              <ion-icon slot="start" name="arrow-forward-sharp"></ion-icon>
+              <ion-label>Society(Samiti)</ion-label>
+            </ion-item>
+            <ion-item [routerLink]="['/reports/farmers']"  (click)="closeMenu()">
+              <ion-icon slot="start" name="arrow-forward-sharp"></ion-icon>
+              <ion-label>Farmers</ion-label>
+            </ion-item>
+            <ion-item [routerLink]="['/reports/milk-coll']"  (click)="closeMenu()">
+              <ion-icon slot="start" name="arrow-forward-sharp"></ion-icon>
+              <ion-label>Milk Collection</ion-label>
+            </ion-item>
+            <ion-item [routerLink]="['/reports/queries']"  (click)="closeMenu()">
+              <ion-icon slot="start" name="arrow-forward-sharp"></ion-icon>
+              <ion-label>Queries</ion-label>
+            </ion-item>
+            <ion-item [routerLink]="['/reports/demands']"  (click)="closeMenu()">
+              <ion-icon slot="start" name="arrow-forward-sharp"></ion-icon>
+              <ion-label>Demands</ion-label>
+            </ion-item>
+            <ion-item [routerLink]="['/reports/payments']"  (click)="closeMenu()">
+              <ion-icon slot="start" name="arrow-forward-sharp"></ion-icon>
+              <ion-label>Payments</ion-label>
+            </ion-item>
+            <ion-item [routerLink]="['/reports/products']"  (click)="closeMenu()">
+              <ion-icon slot="start" name="arrow-forward-sharp"></ion-icon>
+              <ion-label>Products</ion-label>
+            </ion-item>
+            <ion-item [routerLink]="['/reports/society-milk-coll']"  (click)="closeMenu()">
+              <ion-icon slot="start" name="arrow-forward-sharp"></ion-icon>
+              <ion-label>Society Milk Collection</ion-label>
+            </ion-item>
+            <ion-item [routerLink]="['/reports/qual-quan-check']"  (click)="closeMenu()">
+              <ion-icon slot="start" name="arrow-forward-sharp"></ion-icon>
+              <ion-label>Qual/Quan Check</ion-label>
+            </ion-item>
+            <ion-item [routerLink]="['/reports/society-sales']"  (click)="closeMenu()">
+              <ion-icon slot="start" name="arrow-forward-sharp"></ion-icon>
+              <ion-label>Society Sales</ion-label>
+            </ion-item>
+          </ion-item-group>
+          
+          <ion-item [routerLink]="['/society-demands' ]" (click)="closeMenu()">
+            <ion-icon slot="start" name="cart"></ion-icon>
+            <ion-label>Society Demands</ion-label>
+          </ion-item>
+          
+          <!-- Broadcast Message Dropdown -->
+          <ion-item-divider (click)="toggleDropdown('broadcastMessage')" class="item-divider">
+            <ion-icon slot="start" name="chatbox-ellipses"></ion-icon>
+            <ion-label>Broadcast Message</ion-label>
+            <ion-icon slot="end" [name]="dropdowns['broadcastMessage'] ? 'chevron-down-outline' : 'chevron-forward-outline'"></ion-icon>
+          </ion-item-divider>
+          <ion-item-group *ngIf="dropdowns['broadcastMessage']">
+            <ion-item [routerLink]="['/broadcast-message/screen-msg']"  (click)="closeMenu()">
+              <ion-icon slot="start" name="arrow-forward-sharp"></ion-icon>
+              <ion-label>Screen Message</ion-label>
+            </ion-item>
+            <ion-item [routerLink]="['/broadcast-message/farmer-screen-msg' ]" (click)="closeMenu()">
+              <ion-icon slot="start" name="arrow-forward-sharp"></ion-icon>
+              <ion-label>Farmer Screen Message</ion-label>
+            </ion-item>
+          </ion-item-group>
+          <ion-item [routerLink]="['/settings']"  (click)="closeMenu()">
+            <ion-icon slot="start" name="settings"></ion-icon>
+            <ion-label>Settings</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+
+    <!-- Main Content -->
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

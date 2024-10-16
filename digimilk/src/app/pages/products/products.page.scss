@@ -1,0 +1,42 @@
+ion-searchbar{
+  width: 60%;
+  --border-radius: 5px;
+}
+:host-context(.dark-mode){
+
+  ion-searchbar{
+    --background: #333;
+    color: #ffffff;
+  }
+
+  .product-details p {
+    color: white;
+  }
+}
+
+ion-card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+ion-card-header{
+  background-color: var(--card-header-background-color);
+}
+.product-details {
+  margin: 10px 0;
+}
+.product-details p {
+  color: black;
+  margin: 4px 0;
+}
+
+  ion-img {
+    box-shadow: var(--ion-item-hover-shadow, 0 4px 5px rgba(0, 0, 0, 0.4)); /* Default shadow effect */
+    margin-top:10px;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    border-radius: 8px;
+  }
+  
+  
+  
+  

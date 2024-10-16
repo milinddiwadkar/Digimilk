@@ -1,0 +1,203 @@
+// dashboard-layout.component.scss
+// styles.scss
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+CU:wght@100..400&display=swap');
+/* Light Mode Styles */
+:host {
+  --background: #ffffff;
+  --text-color: #000000;
+  --toolbar-background: linear-gradient(90deg, #4e83c8, #8fc1fb);
+  --toolbar-shadow: 0 4px 6px rgba(5, 5, 5, 0.5);
+  --searchbar-background: #d5d6d7b8;
+  --searchbar-border-radius: 30px;
+}
+
+/* Dark Mode Styles */
+:host-context(.dark-mode) {
+  --background: #121212;
+  --text-color: #ffffff;
+  --toolbar-background: linear-gradient(90deg, #2a2a2a, #3a3a3a);
+  --toolbar-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  --searchbar-background: #7a7a7a;
+  --searchbar-border-radius: 30px;
+}
+
+/* Header Styles */
+ion-header {
+  // --background: var(--toolbar-background);
+  box-shadow: var(--toolbar-shadow);
+}
+
+/* Title Styles */
+ion-title {
+  font-weight: bold;
+  font-size: 1.5rem;
+  text-align: start;
+  color: var(--text-color);
+}
+
+/* Searchbar Styles */
+.searchbar-hidden{
+  display: none;
+}
+
+/* Searchbar Container */
+.searchbar-container {
+  position: relative; /* Position relative for the search results list */
+  display: inline-block; /* Make the container only as wide as its content */
+}
+
+ion-searchbar {
+  --background: var(--searchbar-background);
+  --border-radius: var(--searchbar-border-radius);
+  width: 250px; /* Fixed width for consistency */
+}
+
+/* Search Results List Styles */
+.search-result {
+  position: absolute;
+  top: 0%; /* Position directly below the search bar */
+  left: 70%; /* Align with the start of the search bar */
+  transform: translateX(-50%); /* Center horizontally */
+  width: 200px; /* Auto width to match the width of the search bar */
+  max-width: 250px; /* Ensure it does not exceed search bar width */
+  background-color: var(--background);
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Ensure it appears above other content */
+  display: block;
+  padding: 0;
+  margin-top: 4px; /* Space between search bar and results */
+
+
+  ion-item {
+   cursor: pointer;
+   --inner-padding-end: 16px;
+   --padding-start: 16px;
+  }
+
+  ion-icon{
+      color: var(--text-color);
+    margin-right: 5px;
+  }
+}
+
+/* List Item Styles */
+
+/* Adjust search results for responsiveness without full width */
+@media (max-width: 680px){
+  .search-result {
+    width: 150px; /* Auto width for smaller screens */
+    max-width: 80%; /* Adjust max-width on small screens */
+    left: 50%; /* Align with the start of the search bar */
+    transform: translateX(-50%); /* Center horizontally */
+  }
+}
+
+@media (min-width: 681px) and (max-width: 1250px){
+  .search-result {
+    width: 150px; /* Auto width for smaller screens */
+    max-width: 80%; /* Adjust max-width on small screens */
+    left: 60%; /* Align with the start of the search bar */
+    transform: translateX(-50%); /* Center horizontally */
+
+  }
+}
+
+@media (min-width: 1250px) and (max-width: 1400px){
+  .search-result {
+    width: 150px; /* Auto width for smaller screens */
+    max-width: 80%; /* Adjust max-width on small screens */
+    left: 65%; /* Align with the start of the search bar */
+    transform: translateX(-50%); /* Center horizontally */
+  }
+}
+
+/* User Menu Styles */
+.user-menu {
+  ion-list{
+  position: absolute;
+  top: 100%; /* Position it below the header */
+  right: 10px; /* Align to the right of the header */
+  background-color: var(--background);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000; /* Ensure it appears above other content */
+  width: 150px; /* Set a fixed width or adjust as needed */
+  padding: 0;
+  margin-top: 4px; /* Space between header and menu */
+}
+  ion-item{
+    --inner-padding-end: 16px;
+  --padding-start: 16px;
+  }
+  
+  ion-icon{
+    color: var(--text-color);
+    margin-right: 5px;
+  }
+}
+
+/* Notification Badge Styles */
+.notification-badge {
+  font-size: 10px;
+  border-radius: 50%;
+  position: absolute;
+  top: -4px;
+  right: -4px;
+}
+
+/* Toolbar Styles */
+ion-toolbar {
+  background: var(--toolbar-background);
+  color: var(--text-color);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* General Styling for Backgrounds and Text Colors */
+body {
+  background-color: var(--background);
+  color: var(--text-color);
+}
+
+ion-item{
+--padding-start: 0;
+--inner-padding-end:0;
+}
+.admin-avatar {
+  --size: 40px;
+  margin-left: 0;
+  margin-right: 0;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  overflow: hidden; /* Ensure image doesn't overflow */
+}
+
+.admin-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure image covers the area */
+}
+
+.admin-label {
+  font-family: "Playwrite CU", cursive;
+  font-weight: 700; /* Bold text */
+  font-size: 1rem;
+  color: var(--text-color);
+  text-transform: capitalize; /* Capitalizes the first letter of each word */
+  letter-spacing: 0.5px; /* Slightly increased letter spacing for readability */
+  line-height: 1.4; /* Improved line height for better readability */
+  margin: 0;
+  margin-right: 5px;
+  padding: 0;
+  display: flex;
+  align-items: center; /* Vertically center align text and image */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+/* Hide admin name on small screens */
+@media (max-width: 768px) {
+  .admin-label {
+    margin-right: 0;
+    display: none; /* Hide admin name */
+  }
+}

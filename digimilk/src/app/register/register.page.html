@@ -1,0 +1,67 @@
+<ion-content class="main" [class.dark-mode]="isDarkMode">
+  <div class="background-image-container">
+    <div class="digi-logo-container">
+      <img src="assets/digimilk-logo/digimilk-logo.png" alt="Digi Logo" class="digi-logo">
+    </div>
+    <div class="register-container">
+      <form (ngSubmit)="register()" #registerForm="ngForm">
+        <div class="form-container">
+          <h2 class="register-heading">Create New Account</h2>
+
+          <!-- Username Field -->
+          <ion-item>
+            <ion-input label="Username" label-placement="floating" fill="outline" placeholder="Enter Username"
+              type="text" [(ngModel)]="username" name="username" required></ion-input>
+          </ion-item>
+
+          <!-- Email Field -->
+          <ion-item>
+            <ion-input label="Email" label-placement="floating" fill="outline" placeholder="Enter Email"
+              type="email" [(ngModel)]="email" name="email" required email></ion-input>
+          </ion-item>
+
+          <!-- Password Field -->
+          <ion-item>
+            <ion-input label="Password" label-placement="floating" fill="outline" placeholder="Enter Password"
+              type="password" [(ngModel)]="password" name="password" required></ion-input>
+              <ion-icon name="eye-off" slot="end" class="password-toggle" (click)="togglePasswordVisibility()"></ion-icon>
+          </ion-item>
+
+          <!-- Error Message -->
+          <ion-text>          
+            <p *ngIf="passwordValidator()(passwordControl) !== null" class="error-message">{{ errorMessage1 }}</p>
+          </ion-text>
+
+
+          <!-- Password Strength Indicator -->
+          <div class="password-strength">
+            <ion-progress-bar [value]="passwordStrength"></ion-progress-bar>
+            <p>{{ passwordStrengthText }}</p>
+          </div>
+
+          <!-- Terms and Conditions -->
+          <p lines="none" class="terms">
+            <ion-checkbox [(ngModel)]="termsAccepted" name="termsAccepted" required></ion-checkbox>
+            <ion-label>I agree to the <a href="/terms" target="_blank">Terms and Conditions</a></ion-label>
+          </p>
+
+          <!-- Register Button -->
+          <ion-button expand="full" type="submit" [disabled]="!registerForm.form.valid || isLoading" aria-label="Create Account">
+            <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
+            <span *ngIf="!isLoading">Create Account</span>
+          </ion-button>
+
+          <!-- Error & Success Messages -->
+          <ion-text>
+            <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+            <p class="success-message" *ngIf="successMessage">{{ successMessage }}</p>
+          </ion-text>
+
+          <!-- Navigation Button -->
+          <ion-button (click)="navigateToLogin()" fill="outline">Back to Login</ion-button>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</ion-content>

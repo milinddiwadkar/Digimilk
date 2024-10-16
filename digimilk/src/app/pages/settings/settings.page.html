@@ -1,0 +1,92 @@
+<ion-content [class.dark-mode]="isDarkMode">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Profile Settings</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Email</ion-label>
+        <ion-input [(ngModel)]="userProfile.email" type="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Phone</ion-label>
+        <ion-input [(ngModel)]="userProfile.phone" type="tel"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Address</ion-label>
+        <ion-input [(ngModel)]="userProfile.address"></ion-input>
+      </ion-item>
+      <ion-item>
+        <div class="profile-picture-container">
+          <ion-avatar slot="start" class="profile-picture">
+            <img [src]="profilePicture" alt="Profile Picture">
+          </ion-avatar>
+          <input type="file" (change)="handleFileInput($event)" hidden #fileInput>
+          <ion-button (click)="fileInput.click()" expand="full">Change Picture</ion-button>
+        </div>
+</ion-item>  
+      <ion-button expand="full" color="primary" (click)="updateProfile()">Update Profile</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Account Settings</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Dark Mode</ion-label>
+        <ion-toggle [(ngModel)]="isDarkMode" (ionChange)="toggleDarkMode()"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label>Language</ion-label>
+        <ion-select [(ngModel)]="selectedLanguage" (ionChange)="updateLanguage($event)">
+          <ion-select-option value="en">English</ion-select-option>
+          <ion-select-option value="es">Spanish</ion-select-option>
+          <ion-select-option value="fr">French</ion-select-option>
+          <!-- Add more languages as needed -->
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Notification Preferences</ion-label>
+        <ion-select [(ngModel)]="notificationPreference" (ionChange)="updateNotificationPreference($event)">
+          <ion-select-option value="email">Email</ion-select-option>
+          <ion-select-option value="sms">SMS</ion-select-option>
+          <ion-select-option value="none">None</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Security Settings</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Change Password</ion-label>
+        <ion-button (click)="goToChangePassword()">Change</ion-button>
+      </ion-item>
+      <ion-item>
+        <ion-label>Two-Factor Authentication</ion-label>
+        <ion-toggle [(ngModel)]="isTwoFactorEnabled" (ionChange)="toggleTwoFactorAuth()"></ion-toggle>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Support</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Contact Support</ion-label>
+        <ion-button (click)="contactSupport()">Contact</ion-button>
+      </ion-item>
+      <ion-item>
+        <ion-label>Help Center</ion-label>
+        <ion-button (click)="goToHelpCenter()">Go</ion-button>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

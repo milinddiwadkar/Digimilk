@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ isEdit ? 'Edit' : 'Add' }} Route</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon (click)="dismiss()" name="close"  ></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [class.dark-mode]="isDarkMode">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <ion-item>
+      <ion-label position="stacked">Route Name</ion-label>
+      <ion-input formControlName="name" type="text" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Vehicle Number</ion-label>
+      <ion-input formControlName="vehicleNo" type="text" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Driver Number</ion-label>
+      <ion-input formControlName="driverNumber" type="Number" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Driver Name</ion-label>
+      <ion-input formControlName="driverName" type="text" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Distance (Km)</ion-label>
+      <ion-input formControlName="distance" type="text" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Duration (Total Time)</ion-label>
+      <ion-input formControlName="duration" type="text" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Status</ion-label>
+      <ion-select placeholder="Select Status" interface="popover" formControlName="status">
+        <ion-select-option value="Active">Active</ion-select-option>
+        <ion-select-option value="Inactive">Inactive</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+      <ion-button type="submit" expand="full" [disabled]="form.invalid">{{ isEdit ? 'Edit' : 'Add' }}</ion-button>
+  
+  </form>
+</ion-content>

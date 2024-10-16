@@ -1,0 +1,228 @@
+/* Background Image Container */
+.background-image-container {
+    position: fixed;
+    background: url('../../assets/dashboard/milk.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    filter: brightness(0.85); /* Darker background for contrast in dark mode */
+  }
+  
+  /* Dark Mode Styles */
+  .dark-mode {
+    --ion-background-color: #fdfbfb;
+    --ion-color-primary: #00d8ff;
+    --ion-color-secondary: #ff6f61;
+    --ion-color-tertiary: #f3a712;
+    --ion-text-color: #070707;
+    --ion-item-background: #fbf7f7;
+    --ion-item-border-color: #444;
+    --ion-item-color-active: #00d8ff;
+    --ion-item-color:rgb(247, 240, 240);
+    --ion-input-background: #f3f3f3;
+    --ion-input-color: #080808;
+    --ion-label-background:white;
+    --ion-label-color: #0b0b0b;
+    --ion-placeholder-color: #050505;
+  }
+  
+  /* Logo Styling */
+  .digi-logo {
+    width: 200px;
+    height: auto;
+    animation: fadeIn 1.2s ease-in-out;
+  }
+  
+  /* Login Container */
+  .register-container {
+    background: rgba(255, 255, 255, 0.85); /* Darker background with slight transparency */
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.6); /* Deeper shadow for better contrast */
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    animation: slideUp 1s ease-out;
+  }
+  
+  /* Login Icon */
+  .login-icon {
+    font-size: 70px;
+    color: var(--ion-color-primary);
+  }
+  
+  /* Login Heading */
+  .login-heading {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--ion-color-primary);
+    margin-top: 0;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+  }
+  
+  /* Form Container */
+  .form-container {
+    width: 100%;
+  }
+  
+  /* Input Fields */
+  .form-container ion-item {
+    --background: var(--ion-input-background);
+    // --border-color: var(--ion-item-border-color);
+    --color: var(--ion-text-color);
+    --border-style: none;
+    border-radius: 6px;
+    position: relative;
+  }
+  
+  .form-container ion-input {
+    --color: var(--ion-input-color);
+    --placeholder-color: var(--ion-placeholder-color);
+    margin: 8px 0;
+    padding-left: 12px;
+    border-radius: 6px;
+    background: var(--ion-item-background);
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+  }
+  
+  .form-container ion-input:focus {
+    --border-color: var(--ion-item-color-active);
+    background: rgba(255, 255, 255, 0.5); /* Darken input background on focus */
+  }
+  
+  .form-container ion-label {
+    background: var(--ion-label-background);
+    color: var(--ion-label-color);
+  }
+  
+  /* Password Toggle Icon */
+  .password-toggle {
+    position: absolute;
+    right: 20px;
+    top: 35%;
+    transform: translateY(-50%);
+    z-index: 2;
+    font-size: 22px;
+    cursor: pointer;
+    color: var(--ion-placeholder-color);
+    transition: color 0.3s ease;
+  }
+  
+  .password-toggle:hover {
+    color: var(--ion-color-primary);
+  }
+  
+  /* Remember Me Checkbox */
+  .form-container ion-checkbox {
+    --background: var(--ion-color-primary);
+    --checkmark-color: #fff;
+    --border-radius: 50%;
+  }
+  
+  .terms {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: var(--ion-text-color);
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .error-message{
+    color: var(--ion-color-secondary);
+  }
+  
+  /* Links */
+  .links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+  }
+  
+  .links a {
+    color: var(--ion-color-primary);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  
+  .links a:hover {
+    color: var(--ion-color-secondary);
+  }
+  
+  /* Login Button */
+  ion-button {
+    margin-top: 10px;
+    --background: linear-gradient(45deg, #00d8ff, #0056b3);
+    --box-shadow: 0 4px 10px rgba(0, 123, 255, 0.5);
+    border-radius: 25px;
+    height: 50px;
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: white;
+  }
+  
+  ion-button:hover {
+    --background: linear-gradient(45deg, #0056b3, #003580);
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Media Queries */
+  @media (max-width: 480px) {
+    .login-container {
+      padding: 20px;
+      max-width: 90%;
+    }
+  
+    .login-heading {
+      font-size: 24px;
+    }
+  
+    .digi-logo {
+      width: 200px;
+    }
+  
+    ion-button {
+      font-size: 14px;
+      height: 45px;
+    }
+  
+    .links a {
+      font-size: 12px;
+    }
+  }
+  

@@ -1,0 +1,25 @@
+.profile-picture-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .profile-picture {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+  }
+  
+  ion-card-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  ion-button {
+    margin-top: 10px;
+  }
+  
+  ion-toast {
+    --background: var(--color-success);
+  }
+  

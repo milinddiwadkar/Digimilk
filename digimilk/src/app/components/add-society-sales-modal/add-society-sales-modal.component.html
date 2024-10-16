@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ isEdit ? 'Edit' : 'Add' }} Society Sales</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon (click)="dismiss()" name="close"  ></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [class.dark-mode]="isDarkMode">
+  <form [formGroup]="addSocietySalesForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="stacked">Invoice Id</ion-label>
+      <ion-input formControlName="invoice_id" type="number" min="0"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Customer Id</ion-label>
+      <ion-input formControlName="customer_id" type="number" min="0"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Invoice Date</ion-label>
+      <ion-input
+        readonly
+        id="invoice_date"
+        [value]="addSocietySalesForm.get('invoice_date')?.value | date: 'dd MMM yyyy'">
+      </ion-input>
+      <ion-icon name="calendar-sharp" slot="end" (click)="openPopover(invoice_datePopover)"></ion-icon>
+      <ion-popover  #invoice_datePopover trigger="invoice_date" side="bottom" alignment="start" showBackdrop="false" >
+        <ng-template>
+          <ion-datetime
+            presentation="date"
+            [formControl]="addSocietySalesForm.controls['invoice_date'].value"
+            (ionChange)="onDateChange('invoice_date', $event, invoice_datePopover)">
+          </ion-datetime>
+        </ng-template>
+      </ion-popover>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Total Amount</ion-label>
+      <ion-input formControlName="total_amount" type="number" min="0"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Due Date</ion-label>
+      <ion-input
+        readonly
+        id="due_date"
+        [value]="addSocietySalesForm.get('due_date')?.value | date: 'dd MMM yyyy'">
+      </ion-input>
+      <ion-icon name="calendar-sharp" slot="end" (click)="openPopover(due_datePopover)"></ion-icon>
+      <ion-popover  #due_datePopover trigger="due_date" side="bottom" alignment="start" showBackdrop="false" >
+        <ng-template>
+          <ion-datetime
+            presentation="date"
+            [formControl]="addSocietySalesForm.controls['due_date'].value"
+            (ionChange)="onDateChange('due_date', $event, due_datePopover)">
+          </ion-datetime>
+        </ng-template>
+      </ion-popover>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="stacked">Status</ion-label>
+      <ion-select placeholder="Select Status" interface="popover" formControlName="status">
+        <ion-select-option value="Active ">Active</ion-select-option>
+        <ion-select-option value="Inactive">Inactive</ion-select-option>
+      </ion-select>    
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Organization Id</ion-label>
+      <ion-input formControlName="org_id" type="number" min="0"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Created By</ion-label>
+      <ion-input formControlName="created_by"></ion-input>
+    </ion-item>
+
+
+    <ion-button expand="full" type="submit" [disabled]="!addSocietySalesForm.valid">{{ isEdit ? 'Save Changes' : 'Submit' }}</ion-button>
+  </form>
+</ion-content>

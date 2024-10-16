@@ -1,0 +1,88 @@
+<ion-content [class.dark-mode]="isDarkMode">
+
+  <div class="filter-section">
+    <ion-grid>
+      <ion-row class="ent-ser">
+        <ion-col size="12" size-xs="6" size-sm="6" size-md="3">
+          <ion-item>
+            <ion-select label="Show Entries" interface="popover" label-placement="floating"  [(ngModel)]="entriesToShow" (ionChange)="updatePagination()">
+              <ion-select-option value="5">5</ion-select-option>
+              <ion-select-option value="10">10</ion-select-option>
+              <ion-select-option value="15">15</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12" size-xs="6" size-sm="6" size-md="3">
+          <ion-item>
+            <ion-input label="Search" label-placement="floating"  [(ngModel)]="searchTerm" placeholder="Search Milk Collections"></ion-input>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size="12" size-xs="6" size-sm="6" size-md="3" offset="3" class="header-section">
+          <ion-button color="primary" expand="block" (click)="openAddPaymentModal()">
+            <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+            Add Payment
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <ion-card class="table-card">
+    <div class="table-responsive">
+      <table class="modern-table">
+
+      <thead>
+        <tr>
+          <th>S.no</th>
+          <th>Payment ID</th>
+          <th>Farmer Name</th>
+          <th>Society Name</th>
+          <th>Payment Method</th>
+          <th>Status</th>
+          <th>Payment Amount</th>
+          <th>Payment Date</th>
+          <th>Transaction ID</th>
+          <th>Description</th>
+          <th>Adjustment</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let payment of paginatedPayments; let i = index">
+          <td>{{ (currentPage - 1) * entriesToShow + i + 1 }}</td>
+          <td>{{ payment.paymentId }}</td>
+          <td>{{ payment.farmerName }}</td>
+          <td>{{ payment.societyName }}</td>
+          <td>{{ payment.paymentMethod }}</td>
+          <td>
+            <span
+              [ngClass]="{'completed-status': payment.status === 'Completed', 'pending-status': payment.status === 'Pending'}">
+              {{ payment.status }}
+            </span>
+          </td>          <td>{{ payment.paymentAmount | currency:'INR' }}</td>
+          <td>{{ payment.paymentDate | date: 'dd-MM-yyyy' }}</td>
+          <td>{{ payment.transactionId }}</td>
+          <td>{{ payment.description }}</td>
+          <td>{{ payment.adjustment }}</td>
+          <td>
+            <ion-button size="small" fill="clear" color="primary" (click)="editPayment(payment)">
+              <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+            </ion-button>
+            <ion-button size="small" fill="clear" color="danger" (click)="deletePayment(payment.paymentId)">
+              <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+            </ion-button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ion-card>
+
+<div class="pagination-section">
+  <ion-button (click)="prevPage()" [disabled]="currentPage === 1">Previous</ion-button>
+  <ion-label>{{currentPage}} of {{totalPages}}</ion-label>
+  <ion-button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</ion-button>
+</div>
+
+</ion-content>

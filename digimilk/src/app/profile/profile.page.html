@@ -1,0 +1,52 @@
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Profile</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <!-- Profile Picture Section -->
+      <div class="profile-picture-container">
+        <ion-avatar slot="start" class="profile-picture">
+          <img [src]="profilePicture" alt="Profile Picture">
+        </ion-avatar>
+        <input type="file" (change)="handleFileInput($event)" hidden #fileInput>
+        <ion-button (click)="fileInput.click()" expand="full">Change Picture</ion-button>
+      </div>
+
+      <!-- User Information Form -->
+      <ion-item>
+        <ion-label>Email</ion-label>
+        <ion-input [(ngModel)]="adminEmail" type="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Phone</ion-label>
+        <ion-input [(ngModel)]="adminPhone" type="tel"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Address</ion-label>
+        <ion-input [(ngModel)]="adminAddress"></ion-input>
+      </ion-item>
+
+      <!-- Change Password Section -->
+      <ion-item button (click)="showChangePassword()">
+        <ion-label>Change Password</ion-label>
+        <ion-icon name="lock-closed-outline" slot="end"></ion-icon>
+      </ion-item>
+
+      <!-- Update Button -->
+      <ion-button expand="full" (click)="updateProfile()" [disabled]="isUpdating">
+        <ion-spinner *ngIf="isUpdating" name="dots"></ion-spinner>
+        Update Profile
+      </ion-button>
+
+      <!-- Confirmation Message -->
+      <ion-toast
+        [isOpen]="showConfirmation"
+        message="Profile updated successfully!"
+        duration="2000"
+        color="success"
+        (didDismiss)="showConfirmation = false">
+      </ion-toast>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

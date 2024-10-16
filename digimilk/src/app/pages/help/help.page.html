@@ -1,0 +1,53 @@
+<ion-content [class.dark-mode]="isDarkMode">
+  <ion-list>
+    <ion-item>
+      <ion-label>FAQ</ion-label>
+      <ion-button slot="end" (click)="toggleContent('faq')">Show</ion-button>
+    </ion-item>
+    <ion-item *ngIf="showContent['faq']">
+      <ion-card>
+        <ion-card-content [innerHTML]="getContent('faq')"></ion-card-content>
+      </ion-card>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Contact Support</ion-label>
+      <ion-button slot="end" (click)="toggleContent('contactSupport')">Contact</ion-button>
+    </ion-item>
+    <ion-item *ngIf="showContent['contactSupport']">
+      <ion-card>
+        <ion-card-content [innerHTML]="getContent('contactSupport')"></ion-card-content>
+      </ion-card>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>User Guides</ion-label>
+      <ion-button slot="end" (click)="toggleContent('userGuides')">Show</ion-button>
+    </ion-item>
+    <ion-item *ngIf="showContent['userGuides']">
+      <ion-card>
+        <ion-card-content [innerHTML]="getContent('userGuides')"></ion-card-content>
+      </ion-card>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Troubleshooting</ion-label>
+      <ion-button slot="end" (click)="toggleContent('troubleshooting')">Show</ion-button>
+    </ion-item>
+    <ion-item *ngIf="showContent['troubleshooting']">
+      <ion-card>
+        <ion-card-content [innerHTML]="getContent('troubleshooting')"></ion-card-content>
+      </ion-card>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Report a Problem</ion-label>
+      <ion-button slot="end" (click)="toggleContent('reportProblem')">Report</ion-button>
+    </ion-item>
+    <ion-item *ngIf="showContent['reportProblem']">
+      <ion-card>
+        <ion-card-content [innerHTML]="getContent('reportProblem')"></ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+</ion-content>

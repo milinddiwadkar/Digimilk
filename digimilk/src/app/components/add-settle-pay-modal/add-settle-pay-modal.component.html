@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ isEdit ? 'Edit' : 'Add' }} Settlement</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon (click)="dismiss()" name="close"  ></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [class.dark-mode]="isDarkMode">
+  <form [formGroup]="addSettlePayForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="stacked">Society</ion-label>
+      <ion-select placeholder="Select Society" interface="popover" formControlName="society">
+        <ion-select-option value="Society A">Society A</ion-select-option>
+        <ion-select-option value="Society B">Society B</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Farmer</ion-label>
+      <ion-select placeholder="Select Farmer" interface="popover" formControlName="farmer">
+        <ion-select-option value="Farmer A">Farmer A</ion-select-option>
+        <ion-select-option value="Farmer B">Farmer B</ion-select-option>
+      </ion-select>    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Settlement Amount</ion-label>
+      <ion-input formControlName="settlementAmount" type="number" min="0"></ion-input>
+    </ion-item>
+
+   <ion-item>
+      <ion-label position="stacked">End Date</ion-label>
+      <ion-input
+        readonly
+        id="end-date"
+        [value]="addSettlePayForm.get('settlementDate')?.value | date: 'dd MMM yyyy'">
+      </ion-input>
+      <ion-icon name="calendar-sharp" slot="end" (click)="openPopover(settlementDatePopover)"></ion-icon>
+      <ion-popover #settlementDatePopover trigger="end-date" side="bottom" alignment="start" showBackdrop="false" >
+        <ng-template>
+          <ion-datetime
+            presentation="date"
+            [(ngModel)]="addSettlePayForm.controls['settlementDate'].value"
+            (ionChange)="onDateChange('settlementDate', $event, settlementDatePopover)">
+          </ion-datetime>
+        </ng-template>
+      </ion-popover>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label position="stacked">Adjust</ion-label>
+      <ion-input formControlName="adjust"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Description</ion-label>
+      <ion-input formControlName="description"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Head</ion-label>
+      <ion-input formControlName="head"></ion-input>
+    </ion-item>
+
+    <ion-button expand="full" type="submit" [disabled]="!addSettlePayForm.valid">{{ isEdit ? 'Edit' : 'Add' }}</ion-button>
+  </form>
+</ion-content>

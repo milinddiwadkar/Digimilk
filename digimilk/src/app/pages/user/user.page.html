@@ -1,0 +1,98 @@
+<ion-content [class.dark-mode]="isDarkMode">
+  <!-- Filter and Search Section -->
+  <div class="filter-section">
+    <ion-grid>
+      <ion-row class="ent-ser" >
+        <ion-col size="12" size-xs="4" size-sm="4" size-md="2">
+          <ion-item>
+            <ion-select label="Show Entries" interface="popover" label-placement="floating" 
+              [(ngModel)]="entriesToShow" (ionChange)="updatePagination()">
+              <ion-select-option value="5">5</ion-select-option>
+              <ion-select-option value="10">10</ion-select-option>
+              <ion-select-option value="15">15</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12" size-xs="4" size-sm="4" size-md="2">
+          <ion-item>
+            <ion-input  label="Search" label-placement="floating" [(ngModel)]="searchTerm"
+              placeholder="Search Roles"></ion-input>
+          </ion-item>
+        </ion-col>
+      <ion-col size="12" size-xs="4" size-sm="4" size-md="2" class="header-section">
+        <ion-select label="Roles" label-placement="floating" [(ngModel)]="selectedRole" (ionChange)="filterByRole($event)" interface="popover" >
+        <ion-select-option *ngFor="let role of roles" [value]="role">{{ role }}</ion-select-option>
+      </ion-select>
+    </ion-col>
+    <ion-col size="12" size-xs="12" size-sm="12" size-md="6" class="header-section">
+      <input type="file" (change)="onFileChange($event)" accept=".xlsx, .xls" style="display: none;" #fileInput />
+          <ion-button (click)="fileInput.click()">
+            Import Excel
+          </ion-button> 
+          <ion-button (click)="confirmExport()" [disabled]="users.length === 0">
+            Export to Excel
+          </ion-button> 
+          <ion-button (click)="openAddUserModal()">
+            <ion-icon name="add-circle-outline"></ion-icon>
+            Add User
+          </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  </div>
+  <!-- User Table -->
+  <ion-card class="table-card">
+    <div class="table-responsive">
+      <table class="modern-table">
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>User Name</th>
+          <th>Email ID</th>
+          <th>User ID</th>
+          <th>Mobile</th>
+          <th>Role</th>
+          <th>Status</th>
+          <th>Created Date/Time</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of paginatedUsers; let i = index">
+          <td>{{ (currentPage - 1) * entriesToShow + i + 1 }}</td>
+          <td>{{ user.userName }}</td>
+          <td>{{ user.emailId }}</td>
+          <td>{{ user.userId }}</td>
+          <td>{{ user.mobile }}</td>
+          <td>{{ user.role }}</td>
+          <td>
+            <span
+            [ngClass]="{'active-status': user.status === 'Active', 'inactive-status': user.status === 'Inactive'}">
+            {{ user.status }}
+          </span>
+          </td>
+          <td>{{ isValidDate(user.createdAt) ? (user.createdAt | date: 'short') : 'N/A' }}</td>
+          <td class="action-buttons">
+            <ion-button size="small" fill="clear" color="primary" (click)="editUser(user)">
+              <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+            </ion-button>
+            <ion-button size="small" fill="clear" color="danger" (click)="deleteUser(user.id)">
+              <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+            </ion-button>
+            <ion-button size="small" fill="clear" color="secondary" (click)="changePassword(user)">
+              <ion-icon slot="icon-only" name="lock-closed-outline"></ion-icon>
+            </ion-button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </ion-card>
+
+  <!-- Pagination Section -->
+  <div class="pagination-section">
+    <ion-button slot="start" (click)="prevPage()" [disabled]="currentPage === 1">Previous</ion-button>
+    <ion-label>{{currentPage}} of {{totalPages}}</ion-label>
+    <ion-button slot="end" (click)="nextPage()" [disabled]="currentPage === totalPages">Next</ion-button>
+  </div>
+</ion-content>

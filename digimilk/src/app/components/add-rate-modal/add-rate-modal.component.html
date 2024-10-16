@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ isEdit ? 'Edit' : 'Add' }} Rate</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon (click)="dismiss()" name="close"  ></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [class.dark-mode]="isDarkMode">
+  <form [formGroup]="rateForm" (ngSubmit)="submit()">
+    <ion-item>
+      <ion-label position="stacked">Milk Type</ion-label>
+      <ion-select interface="popover" placeholder="Select Milk Type" formControlName="milkType">
+        <ion-select-option *ngFor="let option of milkTypes" [value]="option">{{ option }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">SNF</ion-label>
+      <ion-input type="number" formControlName="snf"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">FAT</ion-label>
+      <ion-input type="number" formControlName="fat"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Rate per Litre</ion-label>
+      <ion-input type="number" formControlName="ratePerLitre"></ion-input>
+    </ion-item>
+
+
+  <ion-button expand="block" type="submit" [disabled]="!rateForm.valid">{{ isEdit ? 'Save Changes' : 'Submit' }}</ion-button>
+
+  </form>
+</ion-content>

@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ isEditMode ? 'Edit Role' : 'Add Role' }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon (click)="dismiss()" name="close"  ></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [class.dark-mode]="isDarkMode">
+  <form [formGroup]="roleForm" (ngSubmit)="onSubmit()">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Role Details</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label position="stacked">Role Name</ion-label>
+          <ion-input  formControlName="name"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Status</ion-label>
+          <ion-select placeholder="Select Status" interface="popover" formControlName="status">
+            <ion-select-option value="Active">Active</ion-select-option>
+            <ion-select-option value="Inactive">Inactive</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Pages</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ng-container *ngFor="let page of allPages; let i = index">
+            <ion-item>
+              <ion-label >
+                <ion-checkbox
+                  [checked]="page.selected"
+                  (ionChange)="togglePageSelection(i)"
+                  slot="start">
+                </ion-checkbox>
+                {{ page.name }}
+              </ion-label>
+            </ion-item>
+
+            <!-- Always display subpages below the main page -->
+            <ion-list class="subpages-list">
+              <ion-item *ngFor="let subPage of page.subPages; let j = index">
+                <ion-label>
+                  <ion-checkbox
+                    [checked]="subPage.selected"
+                    (ionChange)="toggleSubPageSelection(i, j)"
+                    slot="start">
+                  </ion-checkbox>
+                  {{ subPage.name }}
+                </ion-label>
+              </ion-item>
+            </ion-list>
+          </ng-container>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <div class="button-group">
+      <ion-button expand="full" type="submit">{{ isEditMode ? 'Update Role' : 'Create Role' }}</ion-button>
+    </div>
+  </form>
+</ion-content>

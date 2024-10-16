@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ week ? 'Edit Week' : 'Add Week' }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon (click)="dismiss()" name="close"  ></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [class.dark-mode]="isDarkMode">
+  <form [formGroup]="weekForm">
+    <ion-item>
+      <ion-label position="stacked">Week Name</ion-label>
+      <ion-input formControlName="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Start Date</ion-label>
+      <ion-input
+        readonly
+        id="start-date"
+        [value]="weekForm.get('startDate')?.value | date: 'dd MMM yyyy'">
+      </ion-input>
+      <ion-icon name="calendar-sharp" slot="end" (click)="openPopover(startDatePopover)"></ion-icon>
+      <ion-popover  #startDatePopover trigger="start-date" side="bottom" alignment="start" showBackdrop="false" >
+        <ng-template>
+          <ion-datetime
+            presentation="date"
+            [formControl]="weekForm.controls['startDate'].value"
+            (ionChange)="onDateChange('startDate', $event, startDatePopover)">
+          </ion-datetime>
+        </ng-template>
+      </ion-popover>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">End Date</ion-label>
+      <ion-input
+        readonly
+        id="end-date"
+        [value]="weekForm.get('endDate')?.value | date: 'dd MMM yyyy'">
+      </ion-input>
+      <ion-icon name="calendar-sharp" slot="end" (click)="openPopover(endDatePopover)"></ion-icon>
+      <ion-popover #endDatePopover trigger="end-date" side="bottom" alignment="start" showBackdrop="false" >
+        <ng-template>
+          <ion-datetime
+            presentation="date"
+            [formControl]="weekForm.controls['endDate'].value"
+            (ionChange)="onDateChange('endDate', $event,endDatePopover)">
+          </ion-datetime>
+        </ng-template>
+      </ion-popover>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Status</ion-label>
+      <ion-select placeholder="Select Status" interface="popover" formControlName="status">
+        <ion-select-option value="Active">Active</ion-select-option>
+        <ion-select-option value="Completed">Completed</ion-select-option>
+        <ion-select-option value="Pending">Pending</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-button expand="block" (click)="submit()" [disabled]="weekForm.invalid">{{ week ? 'Save Changes' : 'Submit' }}</ion-button>
+  </form>
+
+  
+  
+
+</ion-content>

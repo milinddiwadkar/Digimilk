@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>
+      {{Title}}
+    </ion-title>
+
+    <ion-buttons slot="end">
+      <!-- Conditional class for small screens -->
+      <ion-searchbar [(ngModel)]="searchQuery" placeholder="Search"
+        [class.searchbar-hidden]="isSmallScreen && !isSearchActive" (ionInput)="performSearch()"
+        (ionCancel)="toggleSearchBar() " (ionClear)="toggleSearchBar()">
+      </ion-searchbar>
+
+      
+
+      <!-- Search Icon visible only on small screens -->
+      <ion-button *ngIf="isSmallScreen && !isSearchActive" (click)="toggleSearchBar()">
+        <ion-icon slot="icon-only" name="search-outline"></ion-icon>
+      </ion-button>
+
+      <ion-button (click)="clearNotifications()">
+        <ion-icon name="notifications-outline"></ion-icon>
+        <ion-badge class="notification-badge" *ngIf="notifications > 0" color="danger">{{ notifications }}</ion-badge>
+      </ion-button>
+
+      <ion-button (click)="darkModeService.toggleDarkMode()">
+        <ion-icon slot="icon-only" [name]="isDarkMode ? 'sunny-outline' : 'moon-outline'"></ion-icon>
+      </ion-button>
+
+      <ion-label class="admin-label">
+        {{adminName}}
+      </ion-label>
+      <ion-item>
+      <ion-avatar slot="end" lines="none" class="admin-avatar"  button (click)="toggleUserMenu($event)">
+          <img src="assets/admin.png" alt="Admin Photo">
+      </ion-avatar>
+    </ion-item>
+
+      <!-- Define the template separately -->
+      
+
+    </ion-buttons>
+  </ion-toolbar>
+  <div  class="user-menu" *ngIf="isUserMenuOpen">
+    <ion-list>
+      <ion-item button (click)="navigateTo({ name: 'My Account', route: '/profile' })"><ion-icon name="person-outline"></ion-icon> My Account</ion-item>
+      <ion-item button (click)="navigateTo({ name: 'Settings', route: '/settings' })"><ion-icon name="settings-outline"></ion-icon>Settings</ion-item>
+      <ion-item button (click)="navigateTo({ name: 'Help', route: '/help' })"><ion-icon name="help-circle-outline"></ion-icon>Help</ion-item>
+      <ion-item button (click)="logout()"><ion-icon name="log-out-outline"></ion-icon>Logout</ion-item>
+    </ion-list>
+  </div>
+</ion-header>
+
+<ion-content>
+  <div class="search-container">
+    <ion-list class="search-result" *ngIf="searchResults.length > 0">
+      <ion-item *ngFor="let result of searchResults; trackBy: trackByFn" (click)="navigateTo(result)">
+        <ion-icon [name]="result.icon" slot="start"></ion-icon>
+        {{ result.name }}
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <ion-router-outlet></ion-router-outlet>
+</ion-content>

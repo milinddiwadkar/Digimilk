@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ isEdit ? 'Edit' : 'Add' }} SNF/FAT</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon (click)="dismiss()" name="close"  ></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [class.dark-mode]="isDarkMode">
+  <form [formGroup]="addSnfFatForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="stacked">Milk Type</ion-label>
+      <ion-select interface="popover" placeholder="Select Milk Type" formControlName="milkType">
+        <ion-select-option *ngFor="let option of milkTypes" [value]="option">{{ option }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Min SNF</ion-label>
+      <ion-input type="number" formControlName="minSnf"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Min FAT</ion-label>
+      <ion-input type="number" formControlName="minFat"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Max SNF</ion-label>
+      <ion-input type="number" formControlName="maxSnf"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Max FAT</ion-label>
+      <ion-input type="number" formControlName="maxFat"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" [disabled]="addSnfFatForm.invalid">{{ isEdit ? 'Edit' : 'Add' }}</ion-button>
+  </form>
+</ion-content>

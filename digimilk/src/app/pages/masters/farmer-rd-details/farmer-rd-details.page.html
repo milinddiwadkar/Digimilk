@@ -1,0 +1,76 @@
+<ion-content [class.dark-mode]="isDarkMode">
+
+  <div class="filter-section">
+    <ion-grid>
+      <ion-row class="ent-ser">
+        <ion-col size="12" size-xs="6" size-sm="6" size-md="3">
+          <ion-item>
+            <ion-select label="Show Entries" interface="popover" label-placement="floating"  [(ngModel)]="entriesToShow" (ionChange)="updatePagination()">
+              <ion-select-option value="5">5</ion-select-option>
+              <ion-select-option value="10">10</ion-select-option>
+              <ion-select-option value="15">15</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12" size-xs="6" size-sm="6" size-md="3">
+          <ion-item>
+            <ion-input label="Search" label-placement="floating"  [(ngModel)]="searchTerm" placeholder="Search RD Details"></ion-input>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size="12" size-xs="6" size-sm="6" size-md="3" offset="3" class="header-section">
+          <ion-button color="primary" expand="block" (click)="openAddFarmerRDModal()">
+            <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+            Add RD Detail
+          </ion-button>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <ion-card class="table-card">
+    <div class="table-responsive">
+      <table class="modern-table">
+        <thead>
+          <tr>
+            <th>S.no</th>
+            <th>Farmer Name</th>
+            <th>Tenure Amount</th>
+            <th>No. of Months</th>
+            <th>Start Date</th>
+            <th>Maturity Amount</th>
+            <th>Interest Rate</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let rdDetail of paginatedCollections; let i = index">
+            <td>{{ (currentPage - 1) * entriesToShow + i + 1 }}</td>
+            <td>{{ rdDetail.farmerName }}</td>
+            <td>{{ rdDetail.tenureAmount | currency:'INR' }}</td>
+            <td>{{ rdDetail.noOfMonths }}</td>
+            <td>{{ rdDetail.startDate | date: 'dd-MM-yyyy' }}</td>
+            <td>{{ rdDetail.maturityAmount | currency:'INR' }}</td>
+            <td>{{ rdDetail.interestRate }}%</td>
+            <td>
+              <ion-button size="small" fill="clear" color="primary" (click)="editRDDetail(rdDetail)">
+                <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+              </ion-button>
+              <ion-button size="small" fill="clear" color="danger" (click)="deleteRDDetail(rdDetail.id)">
+                <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+              </ion-button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ion-card>
+
+  <div class="pagination-section">
+    <ion-button (click)="prevPage()" [disabled]="currentPage === 1">Previous</ion-button>
+    <ion-label>{{currentPage}} of {{totalPages}}</ion-label>
+    <ion-button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</ion-button>
+  </div>
+
+</ion-content>

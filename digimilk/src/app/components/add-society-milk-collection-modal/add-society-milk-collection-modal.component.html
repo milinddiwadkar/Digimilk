@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ isEdit ? 'Edit' : 'Add' }} Society Milk Collection</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon (click)="dismiss()" name="close"  ></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [class.dark-mode]="isDarkMode">
+  <form [formGroup]="addSocietyMilkCollectionForm" (ngSubmit)="onSubmit()">
+    <ion-item>      
+      <ion-label position="stacked">Society Name</ion-label>
+      <ion-select interface="popover" placeholder="Select Society Name" formControlName="societyName">
+        <ion-select-option *ngFor="let option of societyNames" [value]="option">{{ option }}</ion-select-option>
+      </ion-select>
+    </ion-item>    
+    <ion-item>      
+      <ion-label position="stacked">Milk Type</ion-label>
+      <ion-select interface="popover" placeholder="Select Milk Type" formControlName="milkType">
+        <ion-select-option *ngFor="let option of milkTypes" [value]="option">{{ option }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>      
+      <ion-label position="stacked">Milk Category</ion-label>
+      <ion-select interface="popover" placeholder="Select Milk Category" formControlName="milkCategory">
+        <ion-select-option *ngFor="let option of milkCategories" [value]="option">{{ option }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>      
+      <ion-label position="stacked">Shift</ion-label>
+      <ion-select interface="popover" placeholder="Select Shift" formControlName="shift" >
+        <ion-select-option *ngFor="let option of shifts" [value]="option">{{ option }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">SNF</ion-label>
+      <ion-input formControlName="snf" type="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">FAT</ion-label>
+      <ion-input formControlName="fat" type="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Rate/L</ion-label>
+      <ion-input formControlName="ratePerLitre" type="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Total Milk</ion-label>
+      <ion-input formControlName="totalMilk" type="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Total Amount</ion-label>
+      <ion-input formControlName="totalAmount" type="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Item Can ID</ion-label>
+      <ion-input formControlName="canId"></ion-input>
+    </ion-item>
+    <ion-button expand="block" type="submit">{{ isEdit ? 'Edit' : 'Add' }}</ion-button>
+  </form>
+</ion-content>

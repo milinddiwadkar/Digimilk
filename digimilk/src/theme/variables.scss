@@ -1,0 +1,57 @@
+// For information on how to create your own theme, please see:
+// http://ionicframework.com/docs/theming/
+
+:root {
+    --ion-color-primary: #3880ff;
+    --ion-color-secondary: #3dc2ff;
+    --ion-color-success: #10dc60;
+    --ion-color-danger: #f04141;
+    --ion-color-warning: #ffce00;
+    --ion-color-dark: #222428;
+    --ion-color-light: #f4f5f8;
+  
+    /* Dark Mode Overrides */
+    .dark-mode {
+      --ion-background-color: #121212;
+      --ion-text-color: #ffffff;
+      --ion-border-color: #444444;
+    }
+  }
+  
+
+
+/* Light Mode */
+:root {
+  --background-color: #f8f9fa;
+  --header-background-color: #007bff;
+  --header-text-color: #ffffff;
+  --text-color: #495057;
+  --input-background-color: #ffffff;
+  --input-border-color: #e0e0e0;
+  --button-background-color: #007bff;
+  --button-hover-background-color: #0056b3;
+  --button-text-color: #ffffff;
+  --card-background-color: #ffffff;
+  --card-header-background-color: #d5d6d7b8;  ;
+  --card-border-color: #e0e0e0;
+  --checkbox-border-color: #e0e0e0;
+  --checkbox-background-color: #ffffff;
+}
+
+/* Dark Mode */
+.dark-mode {
+  --background-color: #121212;
+  --header-background-color: #333333;
+  --header-text-color: #ffffff;
+  --text-color: #e0e0e0;
+  --input-background-color: #333333;
+  --input-border-color: #555555;
+  --button-background-color: #007bff;
+  --button-hover-background-color: #0056b3;
+  --button-text-color: #ffffff;
+  --card-background-color: #333333;
+  --card-header-background-color: #1b1a1a;
+  --card-border-color: #555555;
+  --checkbox-border-color: #555555;
+  --checkbox-background-color: #333333;
+}

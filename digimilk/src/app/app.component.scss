@@ -1,0 +1,104 @@
+ion-menu {
+  width: 305px;
+  height: 100%;
+  --background: var(--ion-background-color, #ffffff); /* Default to light background */
+}
+
+ion-toolbar {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  padding-left: 16px; /* Adjust padding as needed */
+}
+
+.logo {
+  width: 150px;
+  height: auto;
+  margin-right: auto; /* Pushes logo to the left side */
+}
+
+.menu-cross {
+  font-size: 24px;
+}
+
+/* Searchbar Styling */
+ion-searchbar {
+  --background: #d5d6d7b8;
+  --border-radius: 30px;
+  width: 100%; /* Make the search bar full width */
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar {
+  overflow-y: auto; /* Enables vertical scrolling */
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px; /* Width of the scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Background of the scrollbar track */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #888; /* Color of the scrollbar thumb */
+  border-radius: 4px; /* Rounded corners for the scrollbar thumb */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Darker color on hover */
+}
+
+/* Menu Item Styling */
+ion-item {
+  border-radius: 8px; /* Rounded corners for menu items */
+  margin-bottom: 4px; /* Adds space between items */
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+ion-item.active {
+  background-color: var(--ion-item-active-background, #e0e0e0); /* Default active state color */
+}
+
+ion-item:hover {
+  background-color: var(--ion-item-hover-background, #d0d0d0); /* Default hover effect */
+  box-shadow: var(--ion-item-hover-shadow, 0 2px 5px rgba(0, 0, 0, 0.2)); /* Default shadow effect */
+}
+
+/* Dark Mode Specific Styles */
+:host-context(.dark-mode) {
+  ion-header {
+    --background: #2c2c2c;
+    --color: #ffffff;
+  }
+
+  ion-icon {
+    color: #ffffff;
+  }
+
+  ion-menu {
+    --background: #1e1e1e; /* Dark background for menu */
+  }
+
+  ion-searchbar {
+    --background: #333;
+    color: #ffffff;
+  }
+
+  ion-item.active {
+    background-color: #000000; /* Dark mode active state color */
+  }
+
+  ion-item:hover {
+    background-color: #000000; /* Dark mode hover effect */
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.2); /* Light shadow effect for dark mode */
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header-section {
+    justify-content: space-around;
+  }
+}

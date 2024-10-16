@@ -1,0 +1,272 @@
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import "@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/* Global Styles */
+@import "./theme/variables.scss"; /* Import existing variables if any */
+
+/* Force the app to use only the theme set by the app and not by the device */
+body {
+  color-scheme: light dark; /* Inform the system that your app supports both */
+  --background-color: #ffffff; /* Default background color for light mode */
+  --text-color: #000000; /* Default text color for light mode */
+}
+
+/* Light Mode */
+body:not(.dark-mode) {
+  --background-color: #ffffff;
+  --text-color: #000000;
+}
+
+/* Dark Mode */
+body.dark-mode {
+  --background-color: #121212;
+  --text-color: #ffffff;
+}
+
+/* General Styling */
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+
+/* Header and Layout */
+.header-section {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.filter-section {
+  margin: 10px;
+}
+
+/* Searchbar Styling */
+ion-searchbar {
+  --background: #d5d6d7b8;
+  color: var(--text-color);
+  --border-radius: 30px;
+  width: 250px;
+  // margin-right: 20px;
+}
+
+
+/* Table Styling */
+.table-card {
+  margin: 16px;
+  border-radius: 8px;
+  box-shadow: var(--box-shadow);
+  background-color: var(--card-background-color, #ffffff);
+}
+
+.table-responsive {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.modern-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 800px;
+}
+
+.modern-table thead {
+  background-color: var(--ion-color-primary, #3880ff);
+  color: var(--ion-color-light, #ffffff);
+  text-align: left;
+}
+
+.modern-table th,
+.modern-table td {
+  padding: 12px;
+  border-bottom: 1px solid var(--ion-border-color, #e0e0e0);
+  white-space: nowrap;
+}
+
+.modern-table tbody tr:hover {
+  background-color: var(--ion-color-light, #f9f9f9);
+}
+
+/* Status Colors */
+.active-status {
+  color: var(--ion-color-success, #10dc60);
+  font-weight: bold;
+}
+
+.inactive-status {
+  color: var(--ion-color-danger, #f04141);
+  font-weight: bold;
+}
+
+.completed-status {
+  color: var(--ion-color-primary, #3880ff);
+  font-weight: bold;
+}
+
+.pending-status,
+.available-status {
+  color: var(--ion-color-secondary, #ffc409);
+  font-weight: bold;
+}
+
+.outOfStock-status {
+  color: var(--ion-color-danger, #f04141);
+  font-weight: bold;
+}
+
+/* Pagination Section */
+.pagination-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 16px 10px;
+}
+
+/* Dark Mode Specific Styles */
+.dark-mode {
+  --box-shadow: 0 2px 5px rgba(255, 255, 255, 0.2);
+  --card-background-color: #333;
+  --ion-color-light: #ffffff;
+  --ion-border-color: #555;
+}
+
+/* Light Mode Specific Styles */
+.light-mode {
+  --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  --card-background-color: #ffffff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header-section {
+    justify-content: space-around;
+  }
+}
+
+/* Modal Form Style */
+:host-context(.dark-mode) {
+  ion-header {
+    --background: #2c2c2c;
+    --color: #ffffff;
+    border-bottom: 1px solid #444;
+  }
+
+  ion-toolbar {
+    --background: #444444;
+    --color: #ffffff;
+  }
+
+  ion-title {
+    font-weight: 600;
+    font-size: 18px;
+    color: #ffffff;
+  }
+
+  ion-icon[name="close"] {
+    --font-size: 25px;
+    --margin-right: 10px;
+    color: #ffffff;
+  }
+
+  ion-content {
+    --background: #1e1e1e;
+  }
+
+  form {
+    padding: 24px;
+  }
+
+  ion-item {
+    margin-bottom: 16px;
+    border-radius: 8px;
+    --background: #2a2a2a;
+    --border-color: #444444;
+    --color: #e0e0e0;
+  }
+
+  ion-label {
+    font-weight: 500;
+    font-size: 15px;
+    color: #e0e0e0;
+  }
+
+  ion-select,
+  ion-input {
+    --color: #ffffff;
+    --placeholder-color: #888888;
+  }
+
+  ion-button {
+    background-color: #007bff;
+    color: #ffffff;
+    border-radius: 4px;
+    font-size: 16px;
+    height: 48px;
+    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  ion-button:hover {
+    background-color: #0056b3;
+    --box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+  }
+
+  ion-datetime {
+    font-size: 15px;
+    --color: #ffffff;
+    --background: #2c2c2c;
+  }
+
+  ion-select-option {
+    font-size: 15px;
+    --color: #ffffff;
+    --background: #2a2a2a;
+  }
+
+  ion-select .select-placeholder {
+    font-size: 15px;
+    --color: #888888;
+  }
+}
+
+/* Role CSS */
+ion-card {
+  --background: var(--card-background-color);
+  border: 1px solid var(--card-border-color);
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+ion-card-header {
+  --background: transparent;
+  // padding-bottom: 0;
+}
+
+ion-card-title {
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+ion-checkbox {
+  margin-right: 10px;
+  --background: var(--checkbox-background-color);
+  --border-color: var(--checkbox-border-color);
+}
+
+.subpages-list ion-item {
+  margin-left: 24px;
+}
+
+.button-group {
+  margin-top: 16px;
+}

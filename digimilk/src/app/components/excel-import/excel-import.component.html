@@ -1,0 +1,12 @@
+<!-- src/app/components/excel-import/excel-import.component.html -->
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Import Excel</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <input type="file" (change)="onFileChange($event)" accept=".xlsx, .xls" />
+  </ion-item>
+</ion-content>

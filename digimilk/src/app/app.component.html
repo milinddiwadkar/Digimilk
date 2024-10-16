@@ -1,0 +1,57 @@
+<ion-app>
+  <ion-split-pane contentId="main-content">
+    <ion-menu *ngIf="showMenuBar" side="start" menuId="main-menu" contentId="main-content">
+      <ion-header>
+        <ion-toolbar>
+          <img src="../../src/assets/digimilk-logo/pngegg.png" alt="Logo" class="logo" />
+          <ion-buttons slot="end">
+            <ion-button (click)="closeMenu()">
+              <ion-icon class="menu-cross" name="close"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content class="custom-scrollbar">
+        <!-- Search Bar -->
+        <div class="menu-bar">
+          <ion-searchbar [(ngModel)]="searchQuery" (ionInput)="performSearch()" placeholder="Search"></ion-searchbar>
+        </div>
+
+        <!-- Menu List -->
+        <ion-list>
+          <ng-container *ngFor="let item of filteredMenuItems">
+            <!-- Check if it's a dropdown item or a normal navigation item -->
+            <ion-item
+              button
+              (click)="item.isDropdown ? toggleDropdown(item.key) : navigateTo(item.link)"
+              detail="false"
+            >
+              <ion-icon slot="start" [name]="item.icon"></ion-icon>
+              <ion-label>{{ item.label }}</ion-label>
+              <!-- Chevron icon for dropdown items -->
+              <ion-icon *ngIf="item.isDropdown" slot="end" [name]="dropdowns[item.key] ? 'chevron-up' : 'chevron-down'"></ion-icon>
+            </ion-item>
+
+            <!-- Render dropdown items -->
+            <ion-list *ngIf="item.isDropdown && dropdowns[item.key]">
+              <ion-item
+                *ngFor="let subItem of dropdownItems[item.key]"
+                button
+                [routerLink]="subItem.link"
+                routerDirection="forward"
+                (click)="closeMenu()"
+              >
+                <ion-icon slot="start" name="chevron-forward-outline"></ion-icon>
+                <ion-label>{{ subItem.label }}</ion-label>
+              </ion-item>
+            </ion-list>
+          </ng-container>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+
+    <!-- Main content -->
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

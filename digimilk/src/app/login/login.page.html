@@ -1,0 +1,59 @@
+<ion-content class="main" [class.dark-mode]="isDarkMode">
+  <div class="background-image-container">
+    <div class="digi-logo-container">
+      <img src="../../assets/digimilk-logo/pngegg.png" alt="ERP Logo" class="digi-logo">
+    </div>
+    <div class="login-container">
+      <form (ngSubmit)="login()" #loginForm="ngForm">
+        <div class="form-container">
+          <ion-icon name="person-circle-outline" class="login-icon"></ion-icon>
+          <h2 class="login-heading">Login</h2>
+          
+          <!-- Email/Password Fields -->
+          <ion-item>
+            <ion-input id="usernameField" label="Username" label-placement="floating" fill="outline" placeholder="Enter Username"
+              type="text" [(ngModel)]="username" name="username" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-input id="passwordField" label="Password" label-placement="floating" fill="outline" placeholder="Enter Password"
+              type="password" [(ngModel)]="password" name="password" required [ngModelOptions]="{ updateOn: 'blur' }"></ion-input>
+            <ion-icon name="eye-off" slot="end" class="password-toggle" (click)="togglePasswordVisibility()"></ion-icon>
+          </ion-item>
+          
+          <!-- Error Message -->
+          <ion-text>          
+            <p *ngIf="passwordValidator()(passwordControl) !== null" class="error-message">{{ errorMessage }}</p>
+          </ion-text>
+
+          <!-- Remember Me Checkbox -->
+          <p lines="none" class="rememberMe">
+            <ion-checkbox slot="start" [(ngModel)]="rememberMe" name="rememberMe"></ion-checkbox>
+            <ion-label>Remember Me</ion-label>
+          </p>
+
+          <!-- Login Button -->
+          <ion-button expand="full" type="submit" [disabled]="!loginForm.form.valid" aria-label="Login">
+            <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner> 
+            <span *ngIf="!isLoading">Login</span>
+          </ion-button>
+          
+          <!-- Social Logins -->
+          <div class="social-login">
+            <ion-button (click)="authenticate()">Login with Fingerprint</ion-button>
+            <ion-button  expand="block" fill="clear" (click)="googleLogin()" aria-label="Sign in with Google">
+              <ion-icon name="logo-google" slot="start"></ion-icon> Sign in with Google</ion-button>
+            <ion-button expand="block" fill="clear" (click)="signInWithFacebook()" aria-label="Login with Facebook">
+              <ion-icon name="logo-facebook" slot="start"></ion-icon> Continue with Facebook
+            </ion-button>
+          </div>
+          
+          <!-- Links -->
+          <div class="links">
+            <a [routerLink]="['/forgot-pwd']">Forgot Password?</a>
+            <a [routerLink]="['/register']">Create a new account</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</ion-content>

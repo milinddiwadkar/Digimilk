@@ -1,0 +1,83 @@
+<ion-content [class.dark-mode]="isDarkMode">
+
+  <div class="filter-section">
+    <ion-grid>
+      <ion-row class="ent-ser">
+        <ion-col size="12" size-xs="6" size-sm="6" size-md="3">
+          <ion-item>
+            <ion-select label="Show Entries" interface="popover" label-placement="floating"  [(ngModel)]="entriesToShow" (ionChange)="updatePagination()">
+              <ion-select-option value="5">5</ion-select-option>
+              <ion-select-option value="10">10</ion-select-option>
+              <ion-select-option value="15">15</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12" size-xs="6" size-sm="6" size-md="3">
+          <ion-item>
+            <ion-input label="Search" label-placement="floating"  [(ngModel)]="searchTerm" placeholder="Search Milk Collections"></ion-input>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size="12" size-xs="6" size-sm="6" size-md="3" offset="3" class="header-section">
+          <ion-button color="primary" expand="block" (click)="openAddSocietySalesModal()">
+            <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+            Add Society Sales
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <ion-card class="table-card">
+    <div class="table-responsive">
+      <table class="modern-table">
+      <thead>
+        <tr>
+          <th>Invoice Id</th>
+          <th>Customer Id</th>
+          <th>Invoice Date</th>
+          <th>Total Amount</th>
+          <th>Due Date</th>
+          <th>Status</th>
+          <th>Organization Id</th>
+          <th>Created By</th>
+          <th>Created Date/Time</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let SocietySales of societySales">
+          <td>{{ SocietySales.invoice_id }}</td>
+          <td>{{ SocietySales.customer_id }}</td>
+          <td>{{ SocietySales.invoice_date | date:"dd-MM-yyyy" }}</td>
+          <td>{{ SocietySales.total_amount | currency:'INR' }}</td>
+          <td>{{ SocietySales.due_date | date:"dd-MM-yyyy" }}</td>
+          <td>
+            <span
+              [ngClass]="{'active-status': SocietySales.status === 'Active', 'inactive-status': SocietySales.status === 'Inactive'}">
+              {{ SocietySales.status }}
+            </span>
+          </td>          <td>{{ SocietySales.org_id }}</td>
+          <td>{{ SocietySales.created_by }} </td>
+          <td>{{ SocietySales.createdAT | date:"short" }}</td>
+          <td>
+            <ion-button size="small" fill="clear" color="primary" (click)="editSocietySale(SocietySales)">
+              <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+            </ion-button>
+            <ion-button size="small" fill="clear" color="danger" (click)="deleteSocietySale(SocietySales.invoice_id)">
+              <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+            </ion-button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ion-card>
+
+<div class="pagination-section">
+  <ion-button (click)="prevPage()" [disabled]="currentPage === 1">Previous</ion-button>
+  <ion-label>{{currentPage}} of {{totalPages}}</ion-label>
+  <ion-button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</ion-button>
+</div>
+
+</ion-content>

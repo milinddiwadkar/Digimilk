@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ drDemand ? 'Edit' : 'Add' }} Doctor Demand</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon (click)="dismiss()" name="close"  ></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [class.dark-mode]="isDarkMode">
+  <form [formGroup]="drDemandForm" (ngSubmit)="submitForm()">
+    <ion-item>
+      <ion-label position="stacked">Clinic Name</ion-label>
+      <ion-input formControlName="clinicName"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Dr. Name</ion-label>
+      <ion-input formControlName="drName"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Phone No.</ion-label>
+      <ion-input formControlName="phoneNo"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input formControlName="email"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Speciality</ion-label>
+      <ion-input formControlName="speciality"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Status</ion-label>
+      <ion-select interface="popover" placeholder="Select Status" formControlName="status">
+        <ion-select-option value="Active">Active</ion-select-option>
+        <ion-select-option value="Inactive">Inactive</ion-select-option>
+      </ion-select>
+    </ion-item>
+        <ion-button expand="full" type="submit" [disabled]="!drDemandForm.valid">Submit</ion-button>
+    
+  </form>
+</ion-content>

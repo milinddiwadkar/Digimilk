@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ isEdit ? 'Edit' : 'Add' }} Product</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon (click)="dismiss()" name="close"  ></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [class.dark-mode]="isDarkMode">
+  <form [formGroup]="addProductForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="stacked">Product Name</ion-label>
+      <ion-input formControlName="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Product Type</ion-label>
+      <ion-input formControlName="productType"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Price (₹)</ion-label>
+      <ion-input formControlName="price" type="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Status</ion-label>
+      <ion-select placeholder="Select Status" interface="popover" formControlName="status">
+        <ion-select-option value="Available">Available</ion-select-option>
+        <ion-select-option value="OutofStock">OutofStock</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-button expand="full" type="submit">{{ isEdit ? 'Save Changes' : 'Submit' }}</ion-button>
+  </form>
+</ion-content>

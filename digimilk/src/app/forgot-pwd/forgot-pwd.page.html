@@ -1,0 +1,27 @@
+<ion-content class="main" [class.dark-mode]="isDarkMode">
+  <div class="background-image-container">
+    <div class="digi-logo-container">
+      <img src="assets/digimilk-logo/digimilk-logo.png" alt="Digi Logo" class="digi-logo">
+    </div>
+    <div class="forgot-password-container">
+      <form (ngSubmit)="resetPassword()" #forgotPasswordForm="ngForm">
+        <div class="form-container">
+          <h2 class="forgot-password-heading">Forgot Password</h2>
+          <ion-item>
+            <ion-input label="Email" label-placement="floating" fill="outline" placeholder="Enter your email"
+              type="email" [(ngModel)]="email" name="email" required></ion-input>
+          </ion-item>
+          <ion-button expand="full" type="submit" [disabled]="!forgotPasswordForm.form.valid || isLoading" aria-label="Reset Password">
+            <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
+            <span *ngIf="!isLoading">Reset Password</span>
+          </ion-button>
+          <ion-text>
+            <p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+            <p class="success-message" *ngIf="successMessage">{{ successMessage }}</p>
+          </ion-text>
+          <ion-button (click)="navigateToLogin()" fill="outline">Back to Login</ion-button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,61 @@
+<!-- add-farmer-rd-detail-modal.component.html -->
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ isEdit ? 'Edit' : 'Add' }} Farmer RD Detail</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon (click)="dismiss()" name="close"  ></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [class.dark-mode]="isDarkMode">
+  <form [formGroup]="addFarmerRdDetailForm" (ngSubmit)="save()">
+    <ion-item>
+      <ion-label position="stacked">Farmer Name</ion-label>
+      <ion-select interface="popover" placeholder="Farmer Name" formControlName="farmerName">
+        <ion-select-option *ngFor="let option of farmerNames" [value]="option">{{ option }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Tenure Amount</ion-label>
+      <ion-input formControlName="tenureAmount" type="number"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">No of Months</ion-label>
+      <ion-input formControlName="noOfMonths" type="number"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Start Date</ion-label>
+      <ion-input
+        readonly
+        id="startDate"
+        [value]="addFarmerRdDetailForm.get('startDate')?.value | date: 'dd MMM yyyy'">
+      </ion-input>
+      <ion-icon name="calendar-sharp" slot="end" (click)="openPopover(startDatePopover)"></ion-icon>
+      <ion-popover #startDatePopover trigger="end-date" side="bottom" alignment="start" showBackdrop="false" >
+        <ng-template>
+          <ion-datetime
+            presentation="date"
+            [(ngModel)]="addFarmerRdDetailForm.controls['endDate'].value"
+            (ionChange)="onDateChange('startDate', $event,startDatePopover)">
+          </ion-datetime>
+        </ng-template>
+      </ion-popover>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Maturity Amount</ion-label>
+      <ion-input formControlName="maturityAmount" type="number"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="stacked">Interest Rate (%)</ion-label>
+      <ion-input formControlName="interestRate" type="number" step="0.01"></ion-input>
+    </ion-item>
+
+    <ion-button expand="full" type="submit" [disabled]="!addFarmerRdDetailForm.valid">{{ isEdit ? 'Save Changes' : 'Add RD Details' }}</ion-button>
+  </form>
+</ion-content>

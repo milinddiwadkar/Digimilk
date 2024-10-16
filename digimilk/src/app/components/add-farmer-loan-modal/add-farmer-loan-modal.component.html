@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ isEdit ? 'Edit' : 'Add' }} Farmer Loan</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon (click)="dismiss()" name="close"  ></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [class.dark-mode]="isDarkMode">
+  <form [formGroup]="addLoanForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="stacked">Farmer Name</ion-label>
+      <ion-select interface="popover" placeholder="Farmer Name" formControlName="farmerName">
+        <ion-select-option *ngFor="let option of farmerNames" [value]="option">{{ option }}</ion-select-option>
+      </ion-select>    
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Loan A/C No.</ion-label>
+      <ion-input formControlName="loanAccountNo"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Loan Amount</ion-label>
+      <ion-input formControlName="loanAmount" type="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Interest Rate</ion-label>
+      <ion-input formControlName="interestRate" type="number" step="0.01"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">No of EMI</ion-label>
+      <ion-input formControlName="numberOfEMI" type="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">EMI</ion-label>
+      <ion-input formControlName="emi" type="number"></ion-input>
+    </ion-item>
+
+    <!-- Start Date using ion-datetime -->
+    <ion-item>
+      <ion-label position="stacked">Start Date</ion-label>
+      <ion-input
+        readonly
+        id="start-date"
+        [value]="addLoanForm.get('startDate')?.value | date: 'dd MMM yyyy'">
+      </ion-input>
+      <ion-icon name="calendar-sharp" slot="end" (click)="openPopover(startDatePopover)"></ion-icon>
+      <ion-popover  #startDatePopover trigger="start-date" side="bottom" alignment="start" showBackdrop="false" >
+        <ng-template>
+          <ion-datetime
+            presentation="date"
+            [(ngModel)]="addLoanForm.controls['startDate'].value"
+            (ionChange)="onDateChange('startDate', $event, startDatePopover)">
+          </ion-datetime>
+        </ng-template>
+      </ion-popover>
+    </ion-item>
+
+    <!-- End Date using ion-datetime -->
+    <ion-item>
+      <ion-label position="stacked">End Date</ion-label>
+      <ion-input
+        readonly
+        id="end-date"
+        [value]="addLoanForm.get('endDate')?.value | date: 'dd MMM yyyy'">
+      </ion-input>
+      <ion-icon name="calendar-sharp" slot="end" (click)="openPopover(endDatePopover)"></ion-icon>
+      <ion-popover #endDatePopover trigger="end-date" side="bottom" alignment="start" showBackdrop="false" >
+        <ng-template>
+          <ion-datetime
+            presentation="date"
+            [(ngModel)]="addLoanForm.controls['endDate'].value"
+            (ionChange)="onDateChange('endDate', $event,endDatePopover)">
+          </ion-datetime>
+        </ng-template>
+      </ion-popover>
+    </ion-item>
+
+  <ion-button expand="full" type="submit">{{ isEdit ? 'Save Changes' : 'Add Loan Details' }}</ion-button>
+  </form>
+</ion-content>

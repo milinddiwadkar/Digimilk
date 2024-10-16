@@ -1,0 +1,104 @@
+:host {
+    --background: #f9f9f9;
+    --ion-item-background: var(--background);
+    --ion-item-border-color: var(--background);
+    --ion-button-background: #007bff;
+    --ion-button-color: #fff;
+    --ion-button-border-color: transparent;
+    --ion-label-color: #333;
+    --transition-duration: 0.3s; /* Smooth transition */
+  }
+  
+  ion-header {
+    --background: #007bff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Header shadow */
+  }
+  
+  ion-toolbar {
+    --background: #007bff;
+  }
+  
+  .help-container {
+    padding: 20px; /* Increased padding for better spacing */
+    display: flex;
+    flex-direction: column;
+    gap: 16px; /* Increased gap between items */
+    transition: background-color var(--transition-duration); /* Smooth transition */
+  }
+  
+  .help-item {
+    background: var(--background);
+    border-radius: 12px; /* More rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Deeper shadow */
+    padding: 16px; /* Increased padding */
+    transition: background-color var(--transition-duration), box-shadow var(--transition-duration); /* Smooth transition */
+  }
+  
+  .help-label {
+    font-size: 18px; /* Larger font size */
+    font-weight: 600; /* Slightly bolder text */
+    color: #333;
+    margin-bottom: 8px; /* Space below the label */
+  }
+  
+  .help-button {
+    --background: #007bff;
+    --color: #fff;
+    margin-top: 8px;
+    border-radius: 8px; /* Rounded corners for buttons */
+    padding: 12px; /* Added padding */
+    font-size: 16px; /* Larger font size */
+    transition: background-color var(--transition-duration), transform var(--transition-duration); /* Smooth transition */
+  }
+  
+  .help-button:hover {
+    --background: #0056b3; /* Darker button background on hover */
+    transform: scale(1.05); /* Slightly enlarge button on hover */
+  }
+  
+  .message {
+    margin-top: 12px; /* Increased margin for spacing */
+    padding: 16px; /* Increased padding */
+    background: #e9ecef;
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Light shadow */
+    transition: background-color var(--transition-duration), color var(--transition-duration); /* Smooth transition */
+  }
+  
+  .message p {
+    margin: 0;
+    color: #333;
+    font-size: 14px; /* Slightly smaller font size */
+  }
+  
+  /* Dark mode styles */
+  .dark-mode {
+    --background: #1e1e1e;
+    --ion-item-background: #2c2c2c;
+    --ion-button-background: #007bff;
+    --ion-button-color: #fff;
+    --ion-label-color: #f1f1f1;
+  
+    .help-container {
+      background-color: var(--background);
+    }
+  
+    .help-item {
+      background: #2c2c2c;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Darker shadow */
+    }
+  
+    .help-label {
+      color: #f1f1f1;
+    }
+  
+    .message {
+      background: #333;
+      color: #f1f1f1;
+    }
+  
+    .message p {
+      color: #f1f1f1;
+    }
+  }
+  

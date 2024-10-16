@@ -1,0 +1,80 @@
+<ion-content [class.dark-mode]="isDarkMode">
+
+  <div class="filter-section">
+    <ion-grid>
+      <ion-row class="ent-ser">
+        <ion-col size="12" size-xs="6" size-sm="6" size-md="3">
+          <ion-item>
+            <ion-select label="Show Entries" interface="popover" label-placement="floating" [(ngModel)]="entriesToShow" (ionChange)="updatePagination()">
+              <ion-select-option value="5">5</ion-select-option>
+              <ion-select-option value="10">10</ion-select-option>
+              <ion-select-option value="15">15</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col size="12" size-xs="6" size-sm="6" size-md="3">
+          <ion-item>
+            <ion-input label="Search" label-placement="floating" [(ngModel)]="searchTerm" placeholder="Search Rate Charts"></ion-input>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size="12" size-xs="12" size-sm="12" size-md="6" offset="0" class="header-section">
+          <input type="file" (change)="onFileChange($event)" accept=".xlsx, .xls" style="display: none;" #fileInput />
+          <ion-button (click)="fileInput.click()">
+            Import Excel
+          </ion-button> 
+          <ion-button (click)="confirmExport()" [disabled]="rateCharts.length === 0">
+            Export to Excel
+          </ion-button>           <ion-button color="primary" expand="block" (click)="openAddRateChartModal()">
+            <ion-icon slot="start" name="add-circle-outline"></ion-icon>
+            Add Rate Chart
+          </ion-button>
+        </ion-col>
+
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <ion-card class="table-card">
+    <div class="table-responsive">
+      <table class="modern-table">
+        <thead>
+          <tr>
+            <th>S.no</th>
+            <th>Milk Type</th>
+            <th>SNF</th>
+            <th>FAT</th>
+            <th>Rate/Litre (₹)</th>
+            <th>Created Date/Time</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let rateChart of paginatedCharts; let i = index">
+            <td>{{ (currentPage - 1) * entriesToShow + i + 1 }}</td>
+            <td>{{ rateChart.milkType }}</td>
+            <td>{{ rateChart.snf }}</td>
+            <td>{{ rateChart.fat }}</td>
+            <td>{{ rateChart.ratePerLitre | currency:'INR' }}</td>
+            <td>{{ isValidDate(rateChart.createdAt) ? (rateChart.createdAt | date: 'short') : 'N/A' }}</td>
+            <td>
+              <ion-button size="small" fill="clear" color="primary" (click)="editRateChart(rateChart)">
+                <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+              </ion-button>
+              <ion-button size="small" fill="clear" color="danger" (click)="deleteRateChart(rateChart.id)">
+                <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+              </ion-button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ion-card>
+
+  <div class="pagination-section">
+    <ion-button (click)="prevPage()" [disabled]="currentPage === 1">Previous</ion-button>
+    <ion-label>{{currentPage}} of {{totalPages}}</ion-label>
+    <ion-button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</ion-button>
+  </div>
+
+</ion-content>

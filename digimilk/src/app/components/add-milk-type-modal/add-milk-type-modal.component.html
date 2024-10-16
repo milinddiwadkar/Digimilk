@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ isEdit ? 'Edit' : 'Add' }} Milk Type</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon (click)="dismiss()" name="close"  ></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [class.dark-mode]="isDarkMode">
+  <form [formGroup]="addMilkTypeForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="stacked">Milk Type</ion-label>
+      <ion-select interface="popover" placeholder="Select Milk Type" formControlName="name">
+        <ion-select-option *ngFor="let option of milkTypes" [value]="option">{{ option }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Status</ion-label>
+      <ion-select placeholder="Select Status" interface="popover" formControlName="status">
+        <ion-select-option value="Active">Active</ion-select-option>
+        <ion-select-option value="Inactive">Inactive</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-button expand="full" type="submit">{{ isEdit ? 'Save Changes' : 'Submit' }}</ion-button>
+  </form>
+</ion-content>
